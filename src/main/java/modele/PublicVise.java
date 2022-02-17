@@ -8,4 +8,4 @@ package modele;
  *
  * @author roberben
  */
-public enum PublicVise {ENFANTS,ADOLESCENTS,ADULTES;}
+public enum PublicVise {ENFANT,ADOLESCENT,ADULTE;}
