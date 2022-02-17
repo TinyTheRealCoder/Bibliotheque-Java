@@ -4,10 +4,25 @@
  */
 package modele;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  *
  * @author tougmaa
  */
 public class Ouvrage {
+    
+    private String numeroISBN;
+    private String titre;
+    private String editeur;
+    private Date dateParution;
+    private ArrayList<String> auteurs;
+    private int derneierNumeroExemplaire;
+    private PublicVise publicVise;
+    
+    Ouvrage(){
+        
+    }
     
 }
