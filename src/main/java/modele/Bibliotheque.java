@@ -14,6 +14,11 @@ public class Bibliotheque implements Serializable {
 private static final long serialVersionUID = 1L;  // nécessaire pour la sérialisation
 private Map<Integer, Lecteur> lecteurs;  // association qualifiée par le num
 
+/*
+roberben
+*/
+private int dernierNumeroLecteur;
+
 public Bibliotheque() {
         this.lecteurs = new HashMap<>();
 }

@@ -4,10 +4,18 @@
  */
 package modele;
 
+import java.util.Date;
+
 /**
  *
  * @author tougmaa
  */
 public class Exemplaire {
+    
+    private int numeroExemplaire;
+    private Date dateReception;
+    private boolean empruntable;
+    
+    
     
 }
