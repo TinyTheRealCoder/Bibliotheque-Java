@@ -68,7 +68,7 @@ public class Bibliotheque implements Serializable {
     public void nouvel_ouvrage(IHM ihm){
         ArrayList<String> numerosISBN = new ArrayList<>();
         numerosISBN = this.get_numeros_ISBN();
-        InfosOuvrage infosOuvrage = ihm.saisir_ouvrage(numerosISBN);
+        IHM.InfosOuvrage infosOuvrage = ihm.saisir_ouvrage(numerosISBN);
         Ouvrage ouvrage = new Ouvrage(infosOuvrage.numeroISBN, infosOuvrage.titre, infosOuvrage.editeur, infosOuvrage.datePerution, infosOuvrage.auteurs, infosOuvrage.publicVise);
         this.ouvrages.put(ouvrage.get_numero_ISBN(), ouvrage);
         ihm.informer_utilisateur("Ouvrage créé", true);
@@ -77,7 +77,7 @@ public class Bibliotheque implements Serializable {
     public void nouvel_exemplaire(IHM ihm){
         ArrayList<String> numerosISBN = new ArrayList<>();
         numerosISBN = this.get_numeros_ISBN();
-        InfosExemplaire infosExemplaire = ihm.saisir_exemplaire(numerosISBN);
+        IHM.InfosExemplaire infosExemplaire = ihm.saisir_exemplaire(numerosISBN);
         Ouvrage ouvrage = this.get_ouvrage(infosExemplaire.numeroISBN);
         ouvrage.add_exemplaire(infosExemplaire.quantiteExemplaire, infosExemplaire.quantiteEmpruntable, infosExemplaire.dateReception);
         ihm.informer_utilisateur("Exemplaires ajoutés", true);
