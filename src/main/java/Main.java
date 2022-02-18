@@ -22,7 +22,7 @@ public static void main(String[] args) {
 
     IHM ihm = new IHM(bibliotheque);
 
-    ihm.afficherInterface();
+    ihm.afficher_interface();
 
     try {
         Persisteur.sauverEtat(bibliotheque);

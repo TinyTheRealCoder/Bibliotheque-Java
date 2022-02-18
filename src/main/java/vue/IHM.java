@@ -32,31 +32,31 @@ public IHM(Bibliotheque bibliotheque) {
 *de la classe Bibliotheque réalisant l'action  (gererDialogue)
 */
 
-public void afficherInterface() {
+public void afficher_interface() {
     Commande cmd;
     do {
-        cmd = this.dialogueSaisirCommande();
-        this.gererDialogue(cmd);
+        cmd = this.dialogue_saisir_commande();
+        this.gerer_dialogue(cmd);
     } while (cmd != Commande.QUITTER);
 }
 
-private Commande dialogueSaisirCommande() {
-    ES.afficherTitre("===== Bibliotheque =====");
-    ES.afficherLibelle(Commande.synopsisCommandes());
-    ES.afficherLibelle("===============================================");
-    ES.afficherLibelle("Saisir l'identifiant de l'action choisie :");
-    return Commande.lireCommande();
+private Commande dialogue_saisir_commande() {
+    ES.afficher_titre("===== Bibliotheque =====");
+    ES.afficher_libelle(Commande.synopsis_commandes());
+    ES.afficher_libelle("===============================================");
+    ES.afficher_libelle("Saisir l'identifiant de l'action choisie :");
+    return Commande.lire_commande();
 }
 
-private void gererDialogue(Commande cmd) {
+private void gerer_dialogue(Commande cmd) {
     switch (cmd) {
         case QUITTER:
             break;
         case CREER_LECTEUR:
-            bibliotheque.nouveauLecteur(this);
+            bibliotheque.nouveau_lecteur(this);
             break;
         case CONSULTER_LECTEURS:
-            ES.afficherLibelle("non développé");
+            ES.afficher_libelle("non développé");
             break;
         default:
             assert false : "Commande inconnue.";
@@ -88,36 +88,36 @@ public InfosLecteur(final Integer num, final String nom, final String prenom, fi
 }
 }
 
-public InfosLecteur saisirLecteur() {
+public InfosLecteur saisir_lecteur() {
     String nom, prenom, adresse, email;
     LocalDate dateNaiss;
     Integer num;
 
-    ES.afficherTitre("== Saisie d'un lecteur ==");
-    num =ES.lireEntier("Saisir le numéro du lecteur :");
-    nom = ES.lireChaine("Saisir le nom du lecteur :");
-    prenom = ES.lireChaine("Saisir le prénom du lecteur :");
-    adresse = ES.lireChaine("Saisir l'adresse du lecteur :");
-    dateNaiss = ES.lireDate("Saisir la date de naissance du lecteur :");
-    email = ES.lireEmail("Saisir l'email du lecteur :");
+    ES.afficher_titre("== Saisie d'un lecteur ==");
+    num =ES.lire_entier("Saisir le numéro du lecteur :");
+    nom = ES.lire_chaine("Saisir le nom du lecteur :");
+    prenom = ES.lire_chaine("Saisir le prénom du lecteur :");
+    adresse = ES.lire_chaine("Saisir l'adresse du lecteur :");
+    dateNaiss = ES.lire_date("Saisir la date de naissance du lecteur :");
+    email = ES.lire_email("Saisir l'email du lecteur :");
 
     return new InfosLecteur(num, nom, prenom, adresse, dateNaiss, email);
 }
 
-public void afficherLecteur(final Integer num, final String nom, final String prenom,
+public void afficher_lecteur(final Integer num, final String nom, final String prenom,
                     final LocalDate dateNaiss, final int age, final String email){
-    ES.afficherTitre("== affichage du lecteur== " + num);
-    ES.afficherLibelle("nom, prénom et mail du lecteur :" + nom + " " + prenom + " " + email);
-    ES.afficherLibelle("date de naissance et age du lecteur :" + dateNaiss + " " + age);
+    ES.afficher_titre("== affichage du lecteur== " + num);
+    ES.afficher_libelle("nom, prénom et mail du lecteur :" + nom + " " + prenom + " " + email);
+    ES.afficher_libelle("date de naissance et age du lecteur :" + dateNaiss + " " + age);
 }
 
 //-----  Primitives d'affichage  -----------------------------------------------
-public void informerUtilisateur(final String msg, final boolean succes) {
-    ES.afficherLibelle((succes ? "[OK]" : "[KO]") + " " + msg);
+public void informer_utilisateur(final String msg, final boolean succes) {
+    ES.afficher_libelle((succes ? "[OK]" : "[KO]") + " " + msg);
 }
 
-public void informerUtilisateur(final String msg) {
-    ES.afficherLibelle(msg);
+public void informer_utilisateur(final String msg) {
+    ES.afficher_libelle(msg);
 }
 
 }

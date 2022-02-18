@@ -40,7 +40,7 @@ static {
  *
  * @return La variante de la classe enum dont le code est celui spécifié.
  */
-public static final Commande valueOfCode(int code) {
+public static final Commande value_of_code(int code) {
     Commande result = Commande.valueByCode.get(code);
     if (result == null) {
         throw new IllegalArgumentException("Invalid code");
@@ -51,7 +51,7 @@ public static final Commande valueOfCode(int code) {
 /** Construit le synopsis des commandes. 
 * @return Une chaîne de caractères contenant le synopsis des commandes.
 */
-public static String synopsisCommandes() {
+public static String synopsis_commandes() {
     StringBuilder builder = new StringBuilder();
 
     for (Commande cmd: Commande.values()) {
@@ -72,20 +72,20 @@ private String synopsis() {
     return this.code + " — " + this.description;
 };
 
-public static Commande lireCommande() {
+public static Commande lire_commande() {
     String token = null;
     Boolean OK = false;
     Commande cmd = null;
     do {
         try {
-        token = ES.lireChaine();
+        token = ES.lire_chaine();
         int cmdId = Integer.parseUnsignedInt(token);  // may throw NumberFormatException
-        cmd = Commande.valueOfCode(cmdId);  // may throw IllegalArgumentException
+        cmd = Commande.value_of_code(cmdId);  // may throw IllegalArgumentException
         OK = true;
     }
     // NumberFormatException est une sous-classe de IllegalArgumentException
     catch (IllegalArgumentException ignored) {
-      ES.afficherLibelle("Choix non valide : merci d'entrer un identifiant existant.");
+      ES.afficher_libelle("Choix non valide : merci d'entrer un identifiant existant.");
 //          result = Optional.empty();
     }
     } while (!OK);

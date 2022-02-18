@@ -23,24 +23,24 @@ public Bibliotheque() {
         this.lecteurs = new HashMap<>();
 }
 
-public void nouveauLecteur(IHM ihm) {
-    IHM.InfosLecteur infosLecteur = ihm.saisirLecteur();
+public void nouveau_lecteur(IHM ihm) {
+    IHM.InfosLecteur infosLecteur = ihm.saisir_lecteur();
     Lecteur l = lecteurs.get(infosLecteur.num);
     if (l == null) {
         l = new Lecteur(infosLecteur.num, infosLecteur.nom, infosLecteur.prenom, infosLecteur.dateNaiss, infosLecteur.email);
-        lierLecteur(l, infosLecteur.num);
-        ihm.informerUtilisateur("création du lecteur de numéro : " + infosLecteur.num, true);
+        lier_lecteur(l, infosLecteur.num);
+        ihm.informer_utilisateur("création du lecteur de numéro : " + infosLecteur.num, true);
 
     } else {
-        ihm.informerUtilisateur("numéro de lecteur existant", false);
+        ihm.informer_utilisateur("numéro de lecteur existant", false);
     }
 }
 
-public Map<Integer, Lecteur> getLecteurs() {
+public Map<Integer, Lecteur> get_lecteurs() {
     return this.lecteurs;
 }
 
-private void lierLecteur(Lecteur l, Integer num) {
+private void lier_lecteur(Lecteur l, Integer num) {
     this.lecteurs.put(num, l);
 }
 

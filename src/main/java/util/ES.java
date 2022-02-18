@@ -33,7 +33,7 @@ public ES() {
 * @return chaine saisie par l'utilisateur
 */
 
-public static String lireChaine() {
+public static String lire_chaine() {
 try {
     return entree.readLine();
 } catch (IOException e) {
@@ -49,15 +49,15 @@ try {
 * effectuer
 * @return String : chaine saisie par l'utilisateur
 */
-public static String lireChaine(String libelle) {
-ES.afficherLibelle(libelle);
-return lireChaine();
+public static String lire_chaine(String libelle) {
+ES.afficher_libelle(libelle);
+return lire_chaine();
 }  // Fin lireChaine
 
 
-public static String lireEmail() {
+public static String lire_email() {
 boolean OK = false;
-String email = lireChaine();
+String email = lire_chaine();
 EmailValidator validator = EmailValidator.getInstance(false, false);        
 do { 
 if (validator.isValid(email)){
@@ -65,15 +65,15 @@ if (validator.isValid(email)){
 } 
 else {
 System.out.println(" l'adresse mail n'est pas valide. Recommencez.");
-email = lireChaine();
+email = lire_chaine();
 }   
 } while (!OK);
 return  email;
 }   // Fin lireEmail
 
-public static String lireEmail(String libelle) {
-ES.afficherLibelle(libelle);
-return lireEmail();
+public static String lire_email(String libelle) {
+ES.afficher_libelle(libelle);
+return lire_email();
 }  // Fin de lireEmail
 
 //	---------------------------------------------------------------------------------------------------------------------
@@ -85,7 +85,7 @@ return lireEmail();
 * @return int : l'entier saisi.
 *
 */
-public static int lireEntier() {
+public static int lire_entier() {
 boolean ok = false;
 int valentiere = 0;
 
@@ -116,9 +116,9 @@ try {
 * @return int : l'entier saisi.
 *
 */
-public static int lireEntier(String libelle) {
-ES.afficherLibelle(libelle);
-return lireEntier();
+public static int lire_entier(String libelle) {
+ES.afficher_libelle(libelle);
+return lire_entier();
 }  // Fin de lireEntier
 
 //	---------------------------------------------------------------------------------------------------------------------
@@ -129,7 +129,7 @@ return lireEntier();
 *
 * @return float : la valeur flottante saisie.
 */
-public static float lireFlottant() {
+public static float lire_flottant() {
 boolean ok = false;
 float valflottant = 0;
 Float flot;
@@ -159,9 +159,9 @@ try {
 * effectuer
 * @return float : la valeur flottante saisie.
 */
-public static float lireFlottant(String libelle) {
-ES.afficherLibelle(libelle);
-return lireFlottant();
+public static float lire_flottant(String libelle) {
+ES.afficher_libelle(libelle);
+return lire_flottant();
 }  // Fin de lireFlottant
 
 //	---------------------------------------------------------------------------------------------------------------------
@@ -172,12 +172,12 @@ return lireFlottant();
 * @return DateLocal : la date est saisie.
 */
 
-public static LocalDate lireDate () {
+public static LocalDate lire_date () {
 Boolean OK = false;
 LocalDate date = null;
 do {
   try {
-     String dateSaisie = lireChaine();
+     String dateSaisie = lire_chaine();
      date = LocalDate.parse(dateSaisie);
      OK = true;
     } catch (DateTimeParseException ignored) {
@@ -188,16 +188,16 @@ return date;
 
 } // Fin de lireDate
 
-public static LocalDate lireDate(String libelle) {
-ES.afficherLibelle(libelle);
-return lireDate();
+public static LocalDate lire_date(String libelle) {
+ES.afficher_libelle(libelle);
+return lire_date();
 }   // Fin de lireDate
 
 // Traitements internes
 /**
 * @return un entier représentant l'année courante.
 */
-private static int anneeCourante() {
+private static int annee_courante() {
 // Instancie une variable date
 LocalDate dateCourante = LocalDate.now ();
 // Extrait l'année de cette variable et la renvoie
@@ -207,7 +207,7 @@ return dateCourante.getYear();
 /**
 * @return un entier représentant le mois courant.
 */
-private static int moisCourant() {
+private static int mois_courant() {
 // Instancie une variable date
 LocalDate dateCourante = LocalDate.now ();
 // Extrait le mois de cette variable et la renvoie
@@ -222,7 +222,7 @@ return dateCourante.getMonthValue();
 *
 * @param titre titre à afficher
 */
-public static void afficherTitre(String titre) {
+public static void afficher_titre(String titre) {
 System.out.println();
 System.out.println(titre);
 System.out.println();
@@ -235,7 +235,7 @@ System.out.flush();
 * @param libelle libelle à afficher.
 */
 
-public static void afficherLibelle(String libelle) {
+public static void afficher_libelle(String libelle) {
 System.out.println(libelle);
 System.out.flush();
 }
