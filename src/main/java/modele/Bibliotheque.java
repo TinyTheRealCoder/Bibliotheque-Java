@@ -72,6 +72,15 @@ public class Bibliotheque implements Serializable {
         }
     }
     
+    public void nouvel_ouvrage(IHM ihm){
+        ArrayList<String> numerosISBN = new ArrayList<>();
+        numerosISBN = this.get_numeros_ISBN();
+        InfosOuvrage infosOuvrage = ihm.saisir_ouvrage(numerosISBN);
+        Ouvrage ouvrage = Ouvrage(infosOuvrage.numeroISBN, infosOuvrage.titre, infosOuvrage.editeur, infosOuvrage.datePerution, infosOuvrage.auteurs, infosOuvrage.publicVise);
+        this.ouvrages.put(ouvrage.get_numero_ISBN(), ouvrage);
+        ihm.informer_utilisateur("Ouvrage créé", true);
+    }
+    
     private Ouvrage get_ouvrage(String numeroISBN){
         return this.ouvrages.get(numeroISBN);
     }
