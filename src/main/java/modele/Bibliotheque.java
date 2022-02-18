@@ -51,7 +51,5 @@ public void consulter_exemplaire_ouvrage(){
 public void consulter_lecteur(){
     
 }
-public void consulters_lecteur(){
-    
-}
+
 }
