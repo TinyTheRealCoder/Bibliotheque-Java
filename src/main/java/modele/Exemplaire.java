@@ -16,6 +16,7 @@ public class Exemplaire {
     private Date dateReception;
     private boolean empruntable;
     private Ouvrage ouvrage;
+    private Lecteur lecteur;
     
     Exemplaire(Ouvrage ouvrage, Date dateReception, boolean empruntable){
         this.ouvrage = ouvrage;
@@ -41,4 +42,8 @@ public class Exemplaire {
         return this.empruntable;
     }
     
+    /*
+    Dans le constructeur
+    public boolean set_ouvrage();
+    */
 }

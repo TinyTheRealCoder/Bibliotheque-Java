@@ -31,5 +31,18 @@ public static void main(String[] args) {
         System.err.flush();
         System.exit(Main.EXIT_ERR_SAVE);
     }
+    
+    //Partie test
+    bibliotheque.nouveau_lecteur(ihm);
+    bibliotheque.nouveau_lecteur(ihm);
+    
+    bibliotheque.nouvel_ouvrage(ihm);
+    bibliotheque.nouvel_ouvrage(ihm);
+    
+    bibliotheque.nouvel_exemplaire(ihm);
+    bibliotheque.nouvel_exemplaire(ihm);
+    
+    bibliotheque.consulter_lecteur(ihm);
+    bibliotheque.consulter_ouvrage(ihm);
 }
 }
