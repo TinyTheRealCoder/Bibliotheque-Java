@@ -30,7 +30,7 @@ public ES() {
 /**
 * permet la saisie d'une chaine. Pas de contrôle du format saisi.
 *
-* @return chaine saisie par l'utilisateur
+* @return chaine saisie par l'utilisREJECTED_NONFASTFORWARDateur
 */
 
 public static String lire_chaine() {
