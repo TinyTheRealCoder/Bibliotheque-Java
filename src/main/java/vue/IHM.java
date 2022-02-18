@@ -124,6 +124,17 @@ public class IHM  {
         ES.afficher_libelle("nom, prénom et mail du lecteur :" + nom + " " + prenom + " " + email);
         ES.afficher_libelle("date de naissance et age du lecteur :" + dateNaiss + " " + age);
     }
+    
+    public void afficher_ouvrage(String titre, String numeroISBN){
+        ES.afficher_titre("== affichage de l'ouvrage ==");
+        ES.afficher_titre("N° " + numeroISBN);
+        ES.afficher_titre("Titre : " + titre);        
+    }
+    
+    public void afficher_numero_exemplaire(int numeroExemplaire){
+        ES.afficher_titre("== affichage du numéro de l'exemplaire ==");
+        ES.afficher_titre("N° " + numeroExemplaire);    
+    }
 
         //-----  Primitives d'affichage  -----------------------------------------------
     public void informer_utilisateur(final String msg, final boolean succes) {
