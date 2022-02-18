@@ -46,11 +46,17 @@ public class Bibliotheque implements Serializable {
     }
 
     
-    /* SETTER */
+    /* ADDER*/
     
     private void add_lecteur(Lecteur l, Integer num) {
         this.lecteurs.put(num, l);
     }
+    
+    private void add_ouvrage(Ouvrage ouvrage, String numeroISBN){
+        this.ouvrages.put(numeroISBN, ouvrage);
+    }
+    
+    /* Cas d'utilisation */
     
     public void nouveau_lecteur(IHM ihm) {
         IHM.InfosLecteur infosLecteur = ihm.saisir_lecteur();
@@ -70,7 +76,7 @@ public class Bibliotheque implements Serializable {
         numerosISBN = this.get_numeros_ISBN();
         IHM.InfosOuvrage infosOuvrage = ihm.saisir_ouvrage(numerosISBN);
         Ouvrage ouvrage = new Ouvrage(infosOuvrage.numeroISBN, infosOuvrage.titre, infosOuvrage.editeur, infosOuvrage.datePerution, infosOuvrage.auteurs, infosOuvrage.publicVise);
-        this.ouvrages.put(ouvrage.get_numero_ISBN(), ouvrage);
+        this.add_ouvrage(ouvrage, ouvrage.get_numero_ISBN());
         ihm.informer_utilisateur("Ouvrage créé", true);
     }
     
