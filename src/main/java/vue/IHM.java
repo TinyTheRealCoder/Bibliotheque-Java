@@ -103,26 +103,51 @@ public class IHM  {
         return new InfosLecteur(num, nom, prenom, adresse, dateNaiss, email);
     }
     
+    public int saisir_numero_lecteur(ArrayList<Integer> numerosLecteur){
+        int numero;
+        
+        ES.afficher_titre("== Saisie d'un numéro lecteur ==");
+        
+        numero = ES.lire_entier("Veuillez saisir un numéro lecteur non existant : ");
+        
+        while (numerosLecteur.contains(numero)){
+            ES.afficher_titre("Le numéro " + numero + " éxiste déjà dans la base.");
+            numero = ES.lire_entier("Veuillez saisir un autre numéro ISBN : ");
+        }
+        
+        return numero;
+    }
+    
     public String saisir_numero_ouvrage(ArrayList<String> numerosISBN){
-        String numeroISBN;
+        String numero;
         
         ES.afficher_titre("== Saisie d'un numéro ISBN ==");
         
-        numeroISBN = ES.lire_chaine("Veuillez saisir un numéro ISBN non existant : ");
+        numero = ES.lire_chaine("Veuillez saisir un numéro ISBN non existant : ");
         
-        while (numerosISBN.contains(numeroISBN)){
-            ES.afficher_titre("Le numéro " + numeroISBN + " éxiste déjà dans la base.");
-            numeroISBN = ES.lire_chaine("Veuillez saisir un autre numéro ISBN : ");
+        while (numerosISBN.contains(numero)){
+            ES.afficher_titre("Le numéro " + numero + " éxiste déjà dans la base.");
+            numero = ES.lire_chaine("Veuillez saisir un autre numéro ISBN : ");
         }
         
-        
-        return numeroISBN;        
+        return numero;        
     }
 
     public void afficher_lecteur(final Integer num, final String nom, final String prenom, final LocalDate dateNaiss, final int age, final String email){
         ES.afficher_titre("== affichage du lecteur== " + num);
         ES.afficher_libelle("nom, prénom et mail du lecteur :" + nom + " " + prenom + " " + email);
         ES.afficher_libelle("date de naissance et age du lecteur :" + dateNaiss + " " + age);
+    }
+    
+    public void afficher_ouvrage(String titre, String numeroISBN){
+        ES.afficher_titre("== affichage de l'ouvrage ==");
+        ES.afficher_titre("N° " + numeroISBN);
+        ES.afficher_titre("Titre : " + titre);        
+    }
+    
+    public void afficher_numero_exemplaire(int numeroExemplaire){
+        ES.afficher_titre("== affichage du numéro de l'exemplaire ==");
+        ES.afficher_titre("N° " + numeroExemplaire);    
     }
 
         //-----  Primitives d'affichage  -----------------------------------------------
