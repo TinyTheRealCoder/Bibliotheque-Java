@@ -12,10 +12,28 @@ import java.util.Date;
  */
 public class Exemplaire {
     
-    private int numeroExemplaire;
+    private Integer numeroExemplaire;
     private Date dateReception;
     private boolean empruntable;
     
+    Exemplaire(){
+        
+    }
     
+    /*
+    Getter Setter
+    */
+    
+    public Integer get_numero_exemplaire() {
+        return this.numeroExemplaire;
+    }
+    
+    public Date get_date_reception() {
+        return this.dateReception;
+    }
+    
+    public boolean get_empruntable() {
+        return this.empruntable;
+    }
     
 }

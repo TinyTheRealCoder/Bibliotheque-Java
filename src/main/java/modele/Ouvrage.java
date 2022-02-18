@@ -26,7 +26,7 @@ public class Ouvrage {
         this.titre = titre;
         this.editeur = editeur;
         this.dateParution = dateParution;
-        this.auteurs = new Arraylist<>();
+        this.auteurs = new ArrayList<String>();
         this.auteurs = auteurs.clone();
         this.dernierNumeroExemplaire = 0;
         this.publicVise = publicVise;
