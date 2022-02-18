@@ -2,6 +2,7 @@ package modele;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -13,6 +14,7 @@ public class Bibliotheque implements Serializable {
 
     private static final long serialVersionUID = 1L;  // nécessaire pour la sérialisation
     private Map<Integer, Lecteur> lecteurs;  // association qualifiée par le num
+    private HashMap<String, Ouvrage> ouvrages;
 
     /*
     roberben
@@ -50,5 +52,36 @@ public class Bibliotheque implements Serializable {
         this.lecteurs.put(num, l);
     }
 
+    private void lier_lecteur(Lecteur l, Integer num) {
+        this.lecteurs.put(num, l);
+    }
+
+    public void consulter_exemplaire_ouvrage(IHM ihm){
+        ArrayList<String> numerosISBN = new ArrayList<>();
+        numerosISBN = this.get_numeros_ISBN();
+        String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
+        Ouvrage ouvrage = get_ouvrage(numeroISBN);
+        String titre = ouvrage.get_titre();
+        ihm.afficher_ouvrage(titre, numeroISBN);
+        ArrayList<Exemplaire> exemplaires = new ArrayList<>();
+        exemplaires = ouvrage.get_exemplaires();
+        int numeroExemplaire;
+        for(Exemplaire ex : exemplaires){
+            numeroExemplaire = ex.get_numero_exemplaire();
+            ihm.afficher_numero_exemplaire(numeroExemplaire);
+        }
+    }
+    
+    private Ouvrage get_ouvrage(String numeroISBN){
+        return this.ouvrages.get(numeroISBN);
+    }
+    
+    private ArrayList<String> get_numeros_ISBN(){
+        ArrayList<String> numerosISBN = new ArrayList<>();
+        this.ouvrages.forEach((n, o) -> {
+            numerosISBN.add(o.get_numero_ISBN());
+        });
+        return numerosISBN;
+    }
 
 }
