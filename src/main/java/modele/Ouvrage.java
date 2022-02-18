@@ -34,11 +34,37 @@ public class Ouvrage {
     }
     
     /*
-    Methodes
+    Methodes Générales
     */
     
     public void incrementer_dernier_numero_exemplaire(){
         this.dernierNumeroExemplaire = this.dernierNumeroExemplaire + 1;
+    }
+    
+    /*
+    Methodes Add
+    */
+    
+    public void add_exemplaire(Integer quantiteExemplaire, Integer quantiteEmpruntable, Date dateReception){
+        boolean empruntable;
+        Integer numExemplaire;
+        Exemplaire ex;
+        
+        for(int i = 1; i <= quantiteExemplaire; i++){
+            
+            empruntable = (i <= quantiteEmpruntable );
+            this.incrementer_dernier_numero_exemplaire();
+            
+            numExemplaire = this.get_dernier_numero_exemplaire();
+            
+            ex = new Exemplaire(this, dateReception, empruntable);
+            
+            add_exemplaire(ex);
+        }
+    }
+    
+    private void add_exemplaire(Exemplaire ex){
+        this.exemplaires.add(ex);
     }
     
     /*
