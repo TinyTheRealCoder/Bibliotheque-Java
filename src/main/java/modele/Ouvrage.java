@@ -60,6 +60,7 @@ public class Ouvrage {
             ex = new Exemplaire(this, dateReception, empruntable);
             
             add_exemplaire(ex);
+            
         }
     }
     
