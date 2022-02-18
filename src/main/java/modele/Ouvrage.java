@@ -32,6 +32,10 @@ public class Ouvrage {
         this.publicVise = publicVise;
     }
     
+    public void incrementer_dernier_numero_exemplaire(){
+        this.dernierNumeroExemplaire = this.dernierNumeroExemplaire + 1;
+    }
+    
     /*
     * Getter Setter
     */
