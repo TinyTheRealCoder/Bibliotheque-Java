@@ -20,6 +20,7 @@ public class Ouvrage {
     private ArrayList<String> auteurs;
     private Integer dernierNumeroExemplaire;
     private PublicVise publicVise;
+    private ArrayList<Exemplaire> exemplaires;
     
     Ouvrage(String numeroISBN, String titre, String editeur, Date dateParution, ArrayList<String> auteurs, PublicVise publicVise){
         this.numeroISBN = numeroISBN;
@@ -31,6 +32,10 @@ public class Ouvrage {
         this.dernierNumeroExemplaire = 0;
         this.publicVise = publicVise;
     }
+    
+    /*
+    Methodes
+    */
     
     public void incrementer_dernier_numero_exemplaire(){
         this.dernierNumeroExemplaire = this.dernierNumeroExemplaire + 1;
@@ -48,6 +53,10 @@ public class Ouvrage {
         return this.titre;
     }
     
+    public String get_editeur() {
+        return this.editeur;
+    }
+    
     public Date get_date_parution() {
         return this.dateParution;
     }
@@ -62,6 +71,10 @@ public class Ouvrage {
     
     public PublicVise get_public_vise() {
         return this.publicVise;
+    }
+    
+    public ArrayList<Exemplaire> get_exemplaires() {
+        return this.exemplaires;
     }
     
 }
