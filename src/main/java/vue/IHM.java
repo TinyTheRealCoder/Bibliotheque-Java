@@ -128,6 +128,8 @@ public class IHM  {
         dateReception = ES.lire_date("Saisir la date de reception de l'exemplaire");
         quantiteExemplaire = ES.lire_entier("Saisir la quantité d'exemplaire disponible", 0);
         quantiteEmpruntable = ES.lire_entier("Saisir la quantite d'exemplaire empruntable", 0, quantiteExemplaire);
+        
+        return new InfosExemplaire(numeroISBN, dateReception, quantiteExemplaire, quantiteEmpruntable);
     }
     
     public InfosOuvrage saisir_ouvrage(ArrayList<String> numerosISBN){
