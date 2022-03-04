@@ -126,7 +126,7 @@ public class Bibliotheque implements Serializable {
         LocalDate date = lecteur.get_date_naissance();
         String mail = lecteur.get_mail();
         Integer age = lecteur.get_age();
-        ihm.afficher_lecteur(numeroLecteur, nom, prenom, date, age, mail);
+        ihm.afficher_lecteur( nom, prenom, date, age, mail, numeroLecteur);
     }
     
 }
