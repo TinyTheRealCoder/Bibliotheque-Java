@@ -85,7 +85,7 @@ public class Bibliotheque implements Serializable {
         ArrayList<String> numerosISBN = new ArrayList<>();
         numerosISBN = this.get_numeros_ISBN();
         IHM.InfosOuvrage infosOuvrage = ihm.saisir_ouvrage(numerosISBN);
-        Ouvrage ouvrage = new Ouvrage(infosOuvrage.numeroISBN, infosOuvrage.titre, infosOuvrage.editeur, infosOuvrage.datePerution, infosOuvrage.auteurs, infosOuvrage.publicVise);
+        Ouvrage ouvrage = new Ouvrage(infosOuvrage.numeroISBN, infosOuvrage.titre, infosOuvrage.editeur, infosOuvrage.dateParution, infosOuvrage.auteurs, infosOuvrage.publicVise);
         this.add_ouvrage(ouvrage, ouvrage.get_numero_ISBN());
         ihm.informer_utilisateur("Ouvrage créé", true);
     }
@@ -126,7 +126,7 @@ public class Bibliotheque implements Serializable {
         LocalDate date = lecteur.get_date_naissance();
         String mail = lecteur.get_mail();
         Integer age = lecteur.get_age();
-        ihm.afficher_lecteur(numeroLecteur, nom, prenom, date, age, mail);
+        ihm.afficher_lecteur( nom, prenom, date, age, mail, numeroLecteur);
     }
     
     
