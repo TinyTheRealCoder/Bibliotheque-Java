@@ -84,7 +84,7 @@ public class Ouvrage {
         return this.editeur;
     }
     
-    public Date get_date_parution() {
+    public LocalDate get_date_parution() {
         return this.dateParution;
     }
     
