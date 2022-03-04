@@ -22,7 +22,7 @@ public class Ouvrage {
     private PublicVise publicVise;
     private ArrayList<Exemplaire> exemplaires;
     
-    Ouvrage(String numeroISBN, String titre, String editeur, Date dateParution, ArrayList<String> auteurs, PublicVise publicVise){
+    Ouvrage(String numeroISBN, String titre, String editeur, LocalDate dateParution, ArrayList<String> auteurs, PublicVise publicVise){
         this.numeroISBN = numeroISBN;
         this.titre = titre;
         this.editeur = editeur;
