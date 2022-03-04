@@ -56,7 +56,7 @@ public class IHM  {
                 bibliotheque.nouveau_lecteur(this);
                 break;
             case CONSULTER_LECTEURS:
-                ES.afficher_libelle("non développé");
+                bibliotheque.consulter_lecteur(this);
                 break;
             default:
                 assert false : "Commande inconnue.";
