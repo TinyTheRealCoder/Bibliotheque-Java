@@ -104,11 +104,7 @@ public class IHM  {
             this.publicVise = publicVise;
         }
     }
-    public static class InfosExemplaire{
-        public final String numeroISBN;
-        public final LocalDate dateReception;
-        public final int
-    }
+
     
     public InfosOuvrage saisir_ouvrage(ArrayList<String> numerosISBN){
         String numero, titre, editeur;
