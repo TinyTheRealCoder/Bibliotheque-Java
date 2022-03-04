@@ -187,6 +187,24 @@ public class ES {
         }
     } // Fin de lireEntier
 
+    
+    /**
+    * permet la saisie d'un entier supérieur à une borne. Si l'utilisateur
+    * saisit une valeur non-entière, affichage d'une erreur et
+    * demande d'une autre saisie.
+    *
+    * @param borne_inf : valeur entière minimale acceptée
+    * @return int : l'entier saisi.
+    *
+    */
+    public static int lire_entier(Integer borne_inf) {
+        Integer res = lire_entier();
+        while(res < borne_inf){
+            res = lire_entier("Erreur de saisie, saisir un entier supérieur ou égal à "+borne_inf);
+        }
+        return res;
+    } // Fin de lireEntier
+    
     /**
     * Affiche un libellé puis permet la saisie d'un entier. Si l'utilisateur
     * saisit une valeur non-entière, affichage d'une erreur et demande d'une
@@ -202,6 +220,24 @@ public class ES {
         return lire_entier();
     }  // Fin de lireEntier
 
+        /**
+    * Affiche un libellé puis permet la saisie d'un entier supérieur à une
+    * borne.
+    * Si l'utilisateur
+    * saisit une valeur non-entière ou inférieur à la borne,
+    * affichage d'une erreur et demande d'une autre saisie.
+    *
+    * @param libelle : libellé à afficher en début pour indiquer quelle saisie
+    * effectuer
+    * @param borne_inf : valeur entière minimale acceptée
+    * @return int : l'entier saisi.
+    *
+    */
+    public static int lire_entier(String libelle, Integer borne_inf) {
+        ES.afficher_libelle(libelle);
+        return lire_entier(borne_inf);
+    }  // Fin de lireEntier
+    
     //	---------------------------------------------------------------------------------------------------------------------
     //	Gestion des flottants
     /**
