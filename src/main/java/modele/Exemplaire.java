@@ -4,7 +4,7 @@
  */
 package modele;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -13,12 +13,12 @@ import java.util.Date;
 public class Exemplaire {
     
     private Integer numeroExemplaire;
-    private Date dateReception;
+    private LocalDate dateReception;
     private boolean empruntable;
     private Ouvrage ouvrage;
     private Lecteur lecteur;
     
-    Exemplaire(Ouvrage ouvrage, Date dateReception, boolean empruntable){
+    Exemplaire(Ouvrage ouvrage, LocalDate dateReception, boolean empruntable){
         this.ouvrage = ouvrage;
         this.ouvrage.incrementer_dernier_numero_exemplaire();
         this.numeroExemplaire = this.ouvrage.get_dernier_numero_exemplaire();
@@ -34,7 +34,7 @@ public class Exemplaire {
         return this.numeroExemplaire;
     }
     
-    public Date get_date_reception() {
+    public LocalDate get_date_reception() {
         return this.dateReception;
     }
     
