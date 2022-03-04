@@ -27,7 +27,7 @@ public class Ouvrage {
         this.titre = titre;
         this.editeur = editeur;
         this.dateParution = dateParution;
-        this.auteurs = new ArrayList<String>();
+        this.auteurs = new ArrayList<>();
         this.auteurs = (ArrayList<String>) auteurs.clone();
         this.dernierNumeroExemplaire = 0;
         this.publicVise = publicVise;
@@ -47,16 +47,13 @@ public class Ouvrage {
     
     public void add_exemplaire(Integer quantiteExemplaire, Integer quantiteEmpruntable, LocalDate dateReception){
         boolean empruntable;
-        Integer numExemplaire;
         Exemplaire ex;
         
         for(int i = 1; i <= quantiteExemplaire; i++){
             
             empruntable = (i <= quantiteEmpruntable );
             this.incrementer_dernier_numero_exemplaire();
-            
-            numExemplaire = this.get_dernier_numero_exemplaire();
-            
+                        
             ex = new Exemplaire(this, dateReception, empruntable);
             
             add_exemplaire(ex);
