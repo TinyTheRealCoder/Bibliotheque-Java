@@ -4,8 +4,8 @@
  */
 package modele;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -16,13 +16,13 @@ public class Ouvrage {
     private String numeroISBN;
     private String titre;
     private String editeur;
-    private Date dateParution;
+    private LocalDate dateParution;
     private ArrayList<String> auteurs;
     private Integer dernierNumeroExemplaire;
     private PublicVise publicVise;
     private ArrayList<Exemplaire> exemplaires;
     
-    Ouvrage(String numeroISBN, String titre, String editeur, Date dateParution, ArrayList<String> auteurs, PublicVise publicVise){
+    Ouvrage(String numeroISBN, String titre, String editeur, LocalDate dateParution, ArrayList<String> auteurs, PublicVise publicVise){
         this.numeroISBN = numeroISBN;
         this.titre = titre;
         this.editeur = editeur;
@@ -45,7 +45,7 @@ public class Ouvrage {
     Methodes Add
     */
     
-    public void add_exemplaire(Integer quantiteExemplaire, Integer quantiteEmpruntable, Date dateReception){
+    public void add_exemplaire(Integer quantiteExemplaire, Integer quantiteEmpruntable, LocalDate dateReception){
         boolean empruntable;
         Integer numExemplaire;
         Exemplaire ex;
@@ -84,7 +84,7 @@ public class Ouvrage {
         return this.editeur;
     }
     
-    public Date get_date_parution() {
+    public LocalDate get_date_parution() {
         return this.dateParution;
     }
     

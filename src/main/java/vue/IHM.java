@@ -104,7 +104,31 @@ public class IHM  {
             this.publicVise = publicVise;
         }
     }
-
+    
+    public static class InfosExemplaire{
+        public final String numeroISBN;
+        public final LocalDate dateReception;
+        public final Integer quantiteExemplaire, quantiteEmpruntable;
+        
+        public InfosExemplaire(final String numeroISBN,final LocalDate dateReception, final Integer quantiteExemplaire, final Integer quantiteEmpruntable){
+            this.numeroISBN = numeroISBN;
+            this.dateReception = dateReception;
+            this.quantiteExemplaire = quantiteExemplaire;
+            this.quantiteEmpruntable = quantiteEmpruntable;
+        }
+    }
+    
+    public InfosExemplaire saisir_exemplaire(ArrayList<String> numerosISBN){
+        String numeroISBN;
+        LocalDate dateReception;
+        Integer quantiteExemplaire, quantiteEmpruntable;
+        
+        ES.afficher_titre("== Saisie des informations de l'exemlaire ==");
+        numeroISBN = ES.lire_numero_unique(numerosISBN);
+        dateReception = ES.lire_date("Saisir la date de reception de l'exemplaire");
+        quantiteExemplaire = ES.lire_entier("Saisir la quantité d'exemplaire disponible", 0);
+        quantiteEmpruntable = ES.lire_entier("Saisir la quantite d'exemplaire empruntable", 0, quantiteExemplaire);
+    }
     
     public InfosOuvrage saisir_ouvrage(ArrayList<String> numerosISBN){
         String numero, titre, editeur;
