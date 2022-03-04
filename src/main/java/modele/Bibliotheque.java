@@ -32,7 +32,7 @@ public class Bibliotheque implements Serializable {
         return this.lecteurs;
     }
     
-    public Lecteur get_lecteur(Integer numeroLecteur){
+    private Lecteur get_lecteur(Integer numeroLecteur){
         return lecteurs.get(numeroLecteur);
     }
     
