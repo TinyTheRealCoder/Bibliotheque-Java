@@ -112,14 +112,15 @@ public class IHM  {
         PublicVise publicVise;
         
         ES.afficher_titre("== Saisie des informations de l'ouvrage ==");
-        numero = ES.lire_numero_unique(numerosISBN);
         titre = ES.lire_chaine("Saisir le titre de l'ouvrage : ");
         editeur = ES.lire_chaine("Saisir le nom de l'éditeur : ");
         dateParution = ES.lire_date("Saisir la date de parution de l'ouvrage");
         auteurs = ES.lire_auteurs();
+        numero = ES.lire_numero_unique(numerosISBN);
+        publicVise = ES.lire_public();
         
         
-        return new InfosOuvrage(titre, editeur, dateParution, auteurs, numero, publicVise);
+        return new InfosOuvrages(titre, editeur, dateParution, auteurs, numero, publicVise);
     }
     
     public InfosLecteur saisir_lecteur() {
