@@ -32,6 +32,9 @@ public class Bibliotheque implements Serializable {
         return this.lecteurs;
     }
     
+    public Lecteur get_lecteur(Integer numeroLecteur){
+        return lecteurs.get(numeroLecteur);
+    }
     
     private Ouvrage get_ouvrage(String numeroISBN){
         return this.ouvrages.get(numeroISBN);
@@ -45,6 +48,13 @@ public class Bibliotheque implements Serializable {
         return numerosISBN;
     }
 
+    private ArrayList<Integer> get_numeros_lecteur(){
+        ArrayList<Integer> numerosLecteur = new ArrayList<>();
+        this.lecteurs.forEach((n, l) -> {
+            numerosLecteur.add(l.get_num());
+        });
+        return numerosLecteur;
+    }
     
     /* ADDER*/
     
@@ -104,6 +114,19 @@ public class Bibliotheque implements Serializable {
             numeroExemplaire = ex.get_numero_exemplaire();
             ihm.afficher_numero_exemplaire(numeroExemplaire);
         }
+    }
+
+    public void consulter_lecteur(IHM ihm){
+        ArrayList<Integer> numerosLecteur = new ArrayList<>();
+        numerosLecteur = this.get_numeros_lecteur();
+        Integer numeroLecteur = ihm.saisir_numero_lecteur(numerosLecteur);
+        Lecteur lecteur = this.get_lecteur(numeroLecteur);
+        String nom = lecteur.get_nom();
+        String prenom = lecteur.get_prenom();
+        LocalDate date = lecteur.get_date_naissance();
+        String mail = lecteur.get_mail();
+        Integer age = lecteur.get_age();
+        ihm.afficher_lecteur(numeroLecteur, nom, prenom, date, age, mail);
     }
     
 }

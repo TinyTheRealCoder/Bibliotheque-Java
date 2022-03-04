@@ -87,7 +87,7 @@ public class IHM  {
             this.email = email;
         }
     }
-    public static class InfosOuvrages{
+    public static class InfosOuvrage{
         public final String titre;
         public final String editeur;
         public final LocalDate dateParution;
@@ -95,7 +95,7 @@ public class IHM  {
         public final String numeroISBN;
         public final PublicVise publicVise;
 
-        public InfosOuvrages(final String titre, final String editeur, final LocalDate dateParution, final ArrayList<String> auteurs, final String numeroISBN, final PublicVise publicVise) {
+        public InfosOuvrage(final String titre, final String editeur, final LocalDate dateParution, final ArrayList<String> auteurs, final String numeroISBN, final PublicVise publicVise) {
             this.titre = titre;
             this.editeur = editeur;
             this.dateParution = dateParution;
@@ -105,7 +105,7 @@ public class IHM  {
         }
     }
     
-    public InfosOuvrages saisir_ouvrage(ArrayList<String> numerosISBN){
+    public InfosOuvrage saisir_ouvrage(ArrayList<String> numerosISBN){
         String numero, titre, editeur;
         LocalDate dateParution;
         ArrayList<String> auteurs;
@@ -120,7 +120,7 @@ public class IHM  {
         publicVise = ES.lire_public();
         
         
-        return new InfosOuvrages(titre, editeur, dateParution, auteurs, numero, publicVise);
+        return new InfosOuvrage(titre, editeur, dateParution, auteurs, numero, publicVise);
     }
     
     public InfosLecteur saisir_lecteur() {
