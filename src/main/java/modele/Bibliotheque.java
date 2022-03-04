@@ -82,8 +82,7 @@ public class Bibliotheque implements Serializable {
     }
     
     public void nouvel_ouvrage(IHM ihm){
-        ArrayList<String> numerosISBN = new ArrayList<>();
-        numerosISBN = this.get_numeros_ISBN();
+        ArrayList<String> numerosISBN = this.get_numeros_ISBN();
         IHM.InfosOuvrage infosOuvrage = ihm.saisir_ouvrage(numerosISBN);
         Ouvrage ouvrage = new Ouvrage(infosOuvrage.numeroISBN, infosOuvrage.titre, infosOuvrage.editeur, infosOuvrage.dateParution, infosOuvrage.auteurs, infosOuvrage.publicVise);
         this.add_ouvrage(ouvrage, ouvrage.get_numero_ISBN());
@@ -91,8 +90,7 @@ public class Bibliotheque implements Serializable {
     }
     
     public void nouvel_exemplaire(IHM ihm){
-        ArrayList<String> numerosISBN = new ArrayList<>();
-        numerosISBN = this.get_numeros_ISBN();
+        ArrayList<String> numerosISBN = this.get_numeros_ISBN();
         IHM.InfosExemplaire infosExemplaire = ihm.saisir_exemplaire(numerosISBN);
         Ouvrage ouvrage = this.get_ouvrage(infosExemplaire.numeroISBN);
         ouvrage.add_exemplaire(infosExemplaire.quantiteExemplaire, infosExemplaire.quantiteEmpruntable, infosExemplaire.dateReception);
@@ -101,14 +99,12 @@ public class Bibliotheque implements Serializable {
 
 
     public void consulter_exemplaire_ouvrage(IHM ihm){
-        ArrayList<String> numerosISBN = new ArrayList<>();
-        numerosISBN = this.get_numeros_ISBN();
+        ArrayList<String> numerosISBN = this.get_numeros_ISBN();
         String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
         Ouvrage ouvrage = get_ouvrage(numeroISBN);
         String titre = ouvrage.get_titre();
         ihm.afficher_ouvrage(titre, numeroISBN);
-        ArrayList<Exemplaire> exemplaires = new ArrayList<>();
-        exemplaires = ouvrage.get_exemplaires();
+        ArrayList<Exemplaire> exemplaires = ouvrage.get_exemplaires();
         int numeroExemplaire;
         for(Exemplaire ex : exemplaires){
             numeroExemplaire = ex.get_numero_exemplaire();
@@ -117,8 +113,7 @@ public class Bibliotheque implements Serializable {
     }
 
     public void consulter_lecteur(IHM ihm){
-        ArrayList<Integer> numerosLecteur = new ArrayList<>();
-        numerosLecteur = this.get_numeros_lecteur();
+        ArrayList<Integer> numerosLecteur = this.get_numeros_lecteur();
         Integer numeroLecteur = ihm.saisir_numero_lecteur(numerosLecteur);
         Lecteur lecteur = this.get_lecteur(numeroLecteur);
         String nom = lecteur.get_nom();
@@ -131,8 +126,7 @@ public class Bibliotheque implements Serializable {
     
     
     public void consulter_ouvrage(IHM ihm){
-        ArrayList<String> numerosISBN = new ArrayList<>();
-        numerosISBN = this.get_numeros_ISBN();
+        ArrayList<String> numerosISBN = this.get_numeros_ISBN();
         String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
         Ouvrage ouvrage = get_ouvrage(numeroISBN);
         String titre = ouvrage.get_titre();
