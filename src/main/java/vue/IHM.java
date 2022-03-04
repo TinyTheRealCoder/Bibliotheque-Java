@@ -104,6 +104,7 @@ public class IHM  {
             this.publicVise = publicVise;
         }
     }
+
     
     public InfosOuvrage saisir_ouvrage(ArrayList<String> numerosISBN){
         String numero, titre, editeur;
@@ -153,7 +154,7 @@ public class IHM  {
         
         return numero;
     }
-    
+       
     public String saisir_numero_ouvrage(ArrayList<String> numerosISBN){
         String numero;
         

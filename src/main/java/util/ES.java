@@ -8,6 +8,7 @@ import java.util.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import modele.PublicVise;
 import org.apache.commons.validator.routines.EmailValidator;
 
 /**
@@ -121,6 +122,39 @@ public class ES {
     public static ArrayList<String> lire_auteurs(String libelle){
         ES.afficher_libelle(libelle);
         return lire_auteurs();
+    }
+    
+    /**
+     * Permet de demander à l'utilisateur de rentrer un PublicVise
+     * 
+     * 
+     * @return 
+     */
+    
+    public static PublicVise lire_public(){
+        PublicVise pv;
+        String str = ES.lire_chaine("Veuillez entrer le public visé (ENFANT ou ADOLESCENT ou ADULTE)").toLowerCase();
+        
+        while (!str.equals("enfant") || !str.equals("adolescent") || !str.equals("adulte")){
+            afficher_libelle("Erreur de saisie");
+            str = ES.lire_chaine("Veuillez entrer le public visé (ENFANT ou ADOLESCENT ou ADULTE)").toLowerCase();
+        }
+        
+        if (str.equals("enfant")){
+            pv = PublicVise.ENFANT;
+        } else if (str.equals("adulte")){
+            pv = PublicVise.ADULTE;
+        } else {
+            pv = PublicVise.ADOLESCENT;
+        }
+        
+        return pv;
+    }
+    
+    public static PublicVise lire_public(String libelle){
+        ES.afficher_libelle(libelle);
+        return lire_public();
+        
     }
 
     //	---------------------------------------------------------------------------------------------------------------------

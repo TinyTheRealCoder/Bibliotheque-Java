@@ -129,4 +129,14 @@ public class Bibliotheque implements Serializable {
         ihm.afficher_lecteur( nom, prenom, date, age, mail, numeroLecteur);
     }
     
+    
+    public void consulter_ouvrage(IHM ihm){
+        ArrayList<String> numerosISBN = new ArrayList<>();
+        numerosISBN = this.get_numeros_ISBN();
+        String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
+        Ouvrage ouvrage = get_ouvrage(numeroISBN);
+        String titre = ouvrage.get_titre();
+        ihm.afficher_ouvrage(titre, numeroISBN);
+    }
+    
 }
