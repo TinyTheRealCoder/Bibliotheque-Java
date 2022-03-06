@@ -33,6 +33,7 @@ public static void main(String[] args) {
     }
     
     //Partie test
+    /*
     bibliotheque.nouveau_lecteur(ihm);
     bibliotheque.nouveau_lecteur(ihm);
     
@@ -44,5 +45,6 @@ public static void main(String[] args) {
     
     bibliotheque.consulter_lecteur(ihm);
     bibliotheque.consulter_ouvrage(ihm);
+    */
 }
 }

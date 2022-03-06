@@ -58,6 +58,12 @@ public class IHM  {
             case CONSULTER_LECTEURS:
                 bibliotheque.consulter_lecteur(this);
                 break;
+            case CREER_OUVRAGE:
+                bibliotheque.nouvel_ouvrage(this);
+                break;
+            case CONSULTER_OUVRAGE:
+                bibliotheque.consulter_ouvrage(this);
+                break;
             default:
                 assert false : "Commande inconnue.";
         }
@@ -171,11 +177,11 @@ public class IHM  {
         
         ES.afficher_titre("== Saisie d'un numéro lecteur ==");
         
-        numero = ES.lire_entier("Veuillez saisir un numéro lecteur non existant : ");
+        numero = ES.lire_entier("Veuillez saisir un numéro lecteur existant : ");
         
-        while (numerosLecteur.contains(numero)){
-            ES.afficher_titre("Le numéro " + numero + " éxiste déjà dans la base.");
-            numero = ES.lire_entier("Veuillez saisir un autre numéro ISBN : ");
+        while (!numerosLecteur.contains(numero)){
+            ES.afficher_titre("Le numéro " + numero + " n'existe pas dans la base.");
+            numero = ES.lire_entier("Veuillez saisir un autre numéro lecteur : ");
         }
         
         return numero;

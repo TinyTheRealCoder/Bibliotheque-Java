@@ -89,8 +89,8 @@ public class ES {
         
         numero = ES.lire_chaine("Veuillez saisir un numéro ISBN non existant : ");
         
-        if (!numerosISBN.contains(numero)){
-            ES.afficher_titre("Le numéro " + numero + " éxiste déjà dans la base.");
+        if (numerosISBN.contains(numero)){
+            ES.afficher_titre("Le numéro " + numero + " existe déjà dans la base.");
             numero = ES.lire_numero_unique(numerosISBN);
         }
         
@@ -135,7 +135,7 @@ public class ES {
         PublicVise pv;
         String str = ES.lire_chaine("Veuillez entrer le public visé (ENFANT ou ADOLESCENT ou ADULTE)").toLowerCase();
         
-        while (!str.equals("enfant") || !str.equals("adolescent") || !str.equals("adulte")){
+        while (!str.equals("enfant") && !str.equals("adolescent") && !str.equals("adulte")){
             afficher_libelle("Erreur de saisie");
             str = ES.lire_chaine("Veuillez entrer le public visé (ENFANT ou ADOLESCENT ou ADULTE)").toLowerCase();
         }

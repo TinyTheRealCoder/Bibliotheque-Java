@@ -23,6 +23,7 @@ public class Bibliotheque implements Serializable {
 
     public Bibliotheque() {
         this.lecteurs = new HashMap<>();
+        this.ouvrages = new HashMap<>();
     }
 
     

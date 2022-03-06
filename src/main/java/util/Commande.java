@@ -12,7 +12,9 @@ public enum Commande {
 
 QUITTER(0, "Quitter"),
 CREER_LECTEUR(1, "Créer un nouvel lecteur"),
-CONSULTER_LECTEURS (2,"Afficher tous les lecteurs");
+CONSULTER_LECTEURS (2,"Afficher tous les lecteurs"),
+CREER_OUVRAGE (3,"Créer un nouvel ouvrage"),
+CONSULTER_OUVRAGE (4,"Afficher un ouvrage");
 
 private final int code;
 private final String description;
