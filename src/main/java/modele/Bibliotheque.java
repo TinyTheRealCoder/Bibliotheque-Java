@@ -131,7 +131,7 @@ public class Bibliotheque implements Serializable {
         String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
         Ouvrage ouvrage = get_ouvrage(numeroISBN);
         String titre = ouvrage.get_titre();
-        ihm.afficher_ouvrage(titre, numeroISBN);
+        ihm.afficher_ouvrage(titre, numeroISBN, ouvrage.get_editeur(), ouvrage.get_date_parution(), ouvrage.get_auteurs(), ouvrage.get_public_vise());
     }
     
 }
