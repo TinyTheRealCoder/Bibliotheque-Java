@@ -192,7 +192,7 @@ public class IHM  {
         
         ES.afficher_titre("== Saisie d'un numéro ISBN ==");
         
-        numero = ES.lire_numero_unique(numerosISBN);
+        numero = ES.lire_numero_existant(numerosISBN);
         
         return numero;        
     }

@@ -99,6 +99,24 @@ public class ES {
     
     /**
      * 
+     * @param numerosISBN Une collections de numeros pour pouvoir vérifier que le numéro entrée soit bien existant
+     * @return String : le numéro isbn existant dans la liste
+     */
+    public static String lire_numero_existant(ArrayList<String> numerosISBN){
+        String numero;
+        
+        numero = ES.lire_chaine("Veuillez saisir un numéro ISBN existant : ");
+        
+        if (!numerosISBN.contains(numero)){
+            ES.afficher_titre("Le numéro " + numero + " n'existe déjà dans la base.");
+            numero = ES.lire_numero_unique(numerosISBN);
+        }
+        
+        return numero;
+    }
+    
+    /**
+     * 
      * @return La collections des auteurs
      */
     public static ArrayList<String> lire_auteurs(){
