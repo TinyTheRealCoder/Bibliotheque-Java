@@ -32,7 +32,6 @@ public static void main(String[] args) {
         System.exit(Main.EXIT_ERR_SAVE);
     }
     
-    
     //Partie test
     /*
     bibliotheque.nouveau_lecteur(ihm);

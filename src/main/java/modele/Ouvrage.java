@@ -31,6 +31,7 @@ public class Ouvrage {
         this.auteurs = (ArrayList<String>) auteurs.clone();
         this.dernierNumeroExemplaire = 0;
         this.publicVise = publicVise;
+        this.exemplaires = new ArrayList<>();
     }
     
     /*
