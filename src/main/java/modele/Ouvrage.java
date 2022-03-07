@@ -53,8 +53,10 @@ public class Ouvrage {
         for(int i = 1; i <= quantiteExemplaire; i++){
             
             empruntable = (i <= quantiteEmpruntable );
+            
+            this.incrementer_dernier_numero_exemplaire();
                         
-            ex = new Exemplaire(this, dateReception, empruntable);
+            ex = new Exemplaire(this,this.get_dernier_numero_exemplaire(), dateReception, empruntable);
             
             //Methode private add_exemplaire du diag de sequence simplifié 
             this.exemplaires.add(ex);

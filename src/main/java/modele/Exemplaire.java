@@ -18,10 +18,9 @@ public class Exemplaire {
     private Ouvrage ouvrage;
     private Lecteur lecteur;
     
-    Exemplaire(Ouvrage ouvrage, LocalDate dateReception, boolean empruntable){
+    Exemplaire(Ouvrage ouvrage, Integer numExemplaire, LocalDate dateReception, boolean empruntable){
         this.ouvrage = ouvrage;
-        this.ouvrage.incrementer_dernier_numero_exemplaire();
-        this.numeroExemplaire = this.ouvrage.get_dernier_numero_exemplaire();
+        this.numeroExemplaire = numExemplaire;
         this.dateReception = dateReception;
         this.empruntable = empruntable;
     }
