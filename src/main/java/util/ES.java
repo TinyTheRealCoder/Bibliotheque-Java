@@ -108,8 +108,8 @@ public class ES {
         numero = ES.lire_chaine("Veuillez saisir un numéro ISBN existant : ");
         
         if (!numerosISBN.contains(numero)){
-            ES.afficher_titre("Le numéro " + numero + " n'existe déjà dans la base.");
-            numero = ES.lire_numero_unique(numerosISBN);
+            ES.afficher_titre("Le numéro " + numero + " n'existe pas dans la base.");
+            numero = ES.lire_numero_existant(numerosISBN);
         }
         
         return numero;

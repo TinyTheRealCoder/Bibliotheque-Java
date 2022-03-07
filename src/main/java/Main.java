@@ -32,6 +32,7 @@ public static void main(String[] args) {
         System.exit(Main.EXIT_ERR_SAVE);
     }
     
+    
     //Partie test
     /*
     bibliotheque.nouveau_lecteur(ihm);
@@ -46,5 +47,6 @@ public static void main(String[] args) {
     bibliotheque.consulter_lecteur(ihm);
     bibliotheque.consulter_ouvrage(ihm);
     */
+    
 }
 }
