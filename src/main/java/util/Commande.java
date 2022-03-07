@@ -11,7 +11,7 @@ import java.util.Map;
 public enum Commande {
 
 QUITTER(0, "Quitter"),
-CREER_LECTEUR(1, "Créer un nouvel lecteur"),
+CREER_LECTEUR(1, "Créer un nouveau lecteur"),
 CONSULTER_LECTEURS (2,"Consulter les informations d'un lecteur"),
 CREER_OUVRAGE (3,"Créer un nouvel ouvrage"),
 CONSULTER_OUVRAGE (4,"Consulter les informations d'un ouvrage"),
