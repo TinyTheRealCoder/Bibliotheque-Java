@@ -15,15 +15,12 @@ public class Bibliotheque implements Serializable {
     private static final long serialVersionUID = 1L;  // nécessaire pour la sérialisation
     private Map<Integer, Lecteur> lecteurs;  // association qualifiée par le num
     private HashMap<String, Ouvrage> ouvrages;
-
-    /*
-    roberben
-    */
-    private int dernierNumeroLecteur;
+    private Integer dernierNumeroLecteur;
 
     public Bibliotheque() {
         this.lecteurs = new HashMap<>();
         this.ouvrages = new HashMap<>();
+        this.dernierNumeroLecteur = 0;
     }
 
     
@@ -67,9 +64,14 @@ public class Bibliotheque implements Serializable {
         this.ouvrages.put(numeroISBN, ouvrage);
     }
     
+    private void incrementer_numero_lecteur(){
+        this.dernierNumeroLecteur += 1;
+    }
+    
     /* Cas d'utilisation */
     
     public void nouveau_lecteur(IHM ihm) {
+        this.incrementer_numero_lecteur();
         IHM.InfosLecteur infosLecteur = ihm.saisir_lecteur();
         Lecteur l = lecteurs.get(infosLecteur.num);
         if (l == null) {

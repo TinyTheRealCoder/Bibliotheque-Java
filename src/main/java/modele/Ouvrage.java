@@ -38,7 +38,7 @@ public class Ouvrage {
     Methodes Générales
     */
     
-    public void incrementer_dernier_numero_exemplaire(){
+    private void incrementer_dernier_numero_exemplaire(){
         this.dernierNumeroExemplaire = this.dernierNumeroExemplaire + 1;
     }
     
