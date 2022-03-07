@@ -14,7 +14,9 @@ QUITTER(0, "Quitter"),
 CREER_LECTEUR(1, "Créer un nouvel lecteur"),
 CONSULTER_LECTEURS (2,"Afficher tous les lecteurs"),
 CREER_OUVRAGE (3,"Créer un nouvel ouvrage"),
-CONSULTER_OUVRAGE (4,"Afficher un ouvrage");
+CONSULTER_OUVRAGE (4,"Afficher un ouvrage"),
+CREER_EXEMPLAIRES (5,"Créer un ou plusieurs nouveux exemplaires"),
+CONSULTER_EXEMPLAIRES (6,"Afficher les exemplaires d'un ouvrage");
 
 private final int code;
 private final String description;

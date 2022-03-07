@@ -64,6 +64,12 @@ public class IHM  {
             case CONSULTER_OUVRAGE:
                 bibliotheque.consulter_ouvrage(this);
                 break;
+            case CREER_EXEMPLAIRES:
+                bibliotheque.nouvel_exemplaire(this);
+                break;
+            case CONSULTER_EXEMPLAIRES:
+                bibliotheque.consulter_exemplaire_ouvrage(this);
+                break;
             default:
                 assert false : "Commande inconnue.";
         }
@@ -130,7 +136,7 @@ public class IHM  {
         Integer quantiteExemplaire, quantiteEmpruntable;
         
         ES.afficher_titre("== Saisie des informations de l'exemlaire ==");
-        numeroISBN = ES.lire_numero_unique(numerosISBN);
+        numeroISBN = ES.lire_numero_existant(numerosISBN);
         dateReception = ES.lire_date("Saisir la date de reception de l'exemplaire");
         quantiteExemplaire = ES.lire_entier("Saisir la quantité d'exemplaire disponible", 0);
         quantiteEmpruntable = ES.lire_entier("Saisir la quantite d'exemplaire empruntable", 0, quantiteExemplaire);
