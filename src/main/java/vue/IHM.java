@@ -215,16 +215,16 @@ public class IHM  {
     
     public void afficher_ouvrage(String titre, String numeroISBN){
         ES.afficher_titre("== affichage de l'ouvrage ==");
-        ES.afficher_titre("N° " + numeroISBN);
-        ES.afficher_titre("Titre : " + titre);        
+        ES.afficher_libelle("N° " + numeroISBN);
+        ES.afficher_libelle("Titre : " + titre);        
     }
     
     public void afficher_ouvrage(String numeroISBN, String titre, String editeur, LocalDate date, ArrayList<String> auteurs, PublicVise pub){
         ES.afficher_titre("== affichage de l'ouvrage ==");
-        ES.afficher_titre("N° " + numeroISBN);
-        ES.afficher_titre("Titre : " + titre);
-        ES.afficher_titre("Editeur : " + editeur);
-        ES.afficher_titre("Titre : " + titre); 
+        ES.afficher_libelle("N° " + numeroISBN);
+        ES.afficher_libelle("Titre : " + titre);
+        ES.afficher_libelle("Editeur : " + editeur);
+        ES.afficher_libelle("Auteurs : "); 
         
         for (String auteur : auteurs){
             ES.afficher_message(auteur);
