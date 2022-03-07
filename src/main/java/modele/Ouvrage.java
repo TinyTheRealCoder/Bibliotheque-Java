@@ -53,7 +53,6 @@ public class Ouvrage {
         for(int i = 1; i <= quantiteExemplaire; i++){
             
             empruntable = (i <= quantiteEmpruntable );
-            this.incrementer_dernier_numero_exemplaire();
                         
             ex = new Exemplaire(this, dateReception, empruntable);
             
