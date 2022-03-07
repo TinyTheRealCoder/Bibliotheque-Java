@@ -56,13 +56,10 @@ public class Ouvrage {
                         
             ex = new Exemplaire(this, dateReception, empruntable);
             
-            add_exemplaire(ex);
+            //Methode private add_exemplaire du diag de sequence simplifié 
+            this.exemplaires.add(ex);
             
         }
-    }
-    
-    private void add_exemplaire(Exemplaire ex){
-        this.exemplaires.add(ex);
     }
     
     /*
