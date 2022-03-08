@@ -52,7 +52,7 @@ public class Ouvrage {
         
         for(int i = 1; i <= quantiteExemplaire; i++){
             
-            empruntable = (i <= quantiteEmpruntable );
+            empruntable = (i <= quantiteEmpruntable);
             
             this.incrementer_dernier_numero_exemplaire();
                         
