@@ -183,16 +183,15 @@ public class IHM  {
         return new InfosLecteur(num, nom, prenom, adresse, dateNaiss, email);
     }
     
-    public int saisir_numero_lecteur(ArrayList<Integer> numerosLecteur){
-        int numero;
+    public Integer saisir_numero_lecteur(ArrayList<Integer> numerosLecteur){
+        Integer numero;
         
         ES.afficher_titre("== Saisie d'un numéro lecteur ==");
         
-        numero = ES.lire_entier("Veuillez saisir un numéro lecteur existant : ");
+        numero = ES.lire_entier("Veuillez saisir un numéro de lecteur : ");
         
-        while (!numerosLecteur.contains(numero)){
-            ES.afficher_titre("Le numéro " + numero + " n'existe pas dans la base.");
-            numero = ES.lire_entier("Veuillez saisir un autre numéro lecteur : ");
+        if(!numerosLecteur.contains(numero)){
+            numero = null;
         }
         
         return numero;
