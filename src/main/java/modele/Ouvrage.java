@@ -4,6 +4,7 @@
  */
 package modele;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -11,8 +12,9 @@ import java.util.ArrayList;
  *
  * @author tougmaa
  */
-public class Ouvrage {
-    
+public class Ouvrage implements Serializable {
+
+    private static final long serialVersionUID = 1L;  // nécessaire pour la sérialisation
     private String numeroISBN;
     private String titre;
     private String editeur;

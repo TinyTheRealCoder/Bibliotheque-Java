@@ -4,14 +4,16 @@
  */
 package modele;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author tougmaa
  */
-public class Exemplaire {
-    
+public class Exemplaire implements Serializable {
+
+    private static final long serialVersionUID = 1L;  // nécessaire pour la sérialisation
     private Integer numeroExemplaire;
     private LocalDate dateReception;
     private boolean empruntable;

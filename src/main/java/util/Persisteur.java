@@ -56,6 +56,7 @@ public static final void sauverEtat(final Bibliotheque bibliotheque) throws File
     }
     catch (IOException ioe) {
         System.err.println("Erreur lors de l'écriture du fichier de persistance.");
+        System.err.println(ioe);
         System.err.flush();
         throw ioe;
     }

@@ -86,7 +86,7 @@ public class Bibliotheque implements Serializable {
     public void nouvel_ouvrage(IHM ihm){
         ArrayList<String> numerosISBN = this.get_numeros_ISBN();
         IHM.InfosOuvrage infosOuvrage = ihm.saisir_ouvrage(numerosISBN);
-        if(infosOuvrage.numeroISBN != null){
+        if(infosOuvrage != null){
             Ouvrage ouvrage = new Ouvrage(infosOuvrage.numeroISBN, infosOuvrage.titre, infosOuvrage.editeur, infosOuvrage.dateParution, infosOuvrage.auteurs, infosOuvrage.publicVise);
             this.add_ouvrage(ouvrage, ouvrage.get_numero_ISBN());
             ihm.informer_utilisateur("ouvrage créé", true);
