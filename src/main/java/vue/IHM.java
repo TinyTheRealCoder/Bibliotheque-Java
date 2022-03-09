@@ -141,8 +141,8 @@ public class IHM  {
             return null;
         }
         dateReception = ES.lire_date("Saisir la date de reception de l'exemplaire");
-        quantiteExemplaire = ES.lire_entier("Saisir la quantité d'exemplaire disponible", 0);
-        quantiteEmpruntable = ES.lire_entier("Saisir la quantite d'exemplaire empruntable", 0, quantiteExemplaire);
+        quantiteExemplaire = ES.lire_entier("Saisir la quantité d'exemplaire à ajouter", 0);
+        quantiteEmpruntable = ES.lire_entier("Combien sont empruntable", 0, quantiteExemplaire);
         
         return new InfosExemplaire(numeroISBN, dateReception, quantiteExemplaire, quantiteEmpruntable);
     }
@@ -210,7 +210,7 @@ public class IHM  {
     public void afficher_lecteur(final String nom, final String prenom, final LocalDate dateNaiss, final int age,final String email, final Integer num){
         ES.afficher_titre("== affichage du lecteur== " + num);
         ES.afficher_libelle("nom, prénom et mail du lecteur :" + nom + " " + prenom + " " + email);
-        ES.afficher_libelle("date de naissance et age du lecteur :" + dateNaiss + " " + age);
+        ES.afficher_libelle("date de naissance et age du lecteur :" + dateNaiss + ", " + age + "ans");
     }
     
     public void afficher_ouvrage(String titre, String numeroISBN){
@@ -219,12 +219,12 @@ public class IHM  {
         ES.afficher_titre("Titre : " + titre);        
     }
     
-    public void afficher_ouvrage(String numeroISBN, String titre, String editeur, LocalDate date, ArrayList<String> auteurs, PublicVise pub){
+    public void afficher_ouvrage(String titre, String numeroISBN, String editeur, LocalDate date, ArrayList<String> auteurs, PublicVise pub){
         ES.afficher_titre("== affichage de l'ouvrage ==");
         ES.afficher_titre("N° " + numeroISBN);
         ES.afficher_titre("Titre : " + titre);
         ES.afficher_titre("Editeur : " + editeur);
-        ES.afficher_titre("Titre : " + titre); 
+        ES.afficher_titre("Auteurs : "); 
         
         for (String auteur : auteurs){
             ES.afficher_message(auteur);
