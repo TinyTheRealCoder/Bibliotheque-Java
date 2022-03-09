@@ -109,6 +109,24 @@ public class Bibliotheque implements Serializable {
         }
     }
         
+
+    public void consulter_lecteur(IHM ihm){
+        ArrayList<Integer> numerosLecteur = this.get_numeros_lecteur();
+        Integer numeroLecteur = ihm.saisir_numero_lecteur(numerosLecteur);
+        if(numeroLecteur == null){
+            ihm.informer_utilisateur("ce numéro de lecteur n'existe pas dans la base", false);
+        }
+        else{
+            Lecteur lecteur = this.get_lecteur(numeroLecteur);
+            String nom = lecteur.get_nom();
+            String prenom = lecteur.get_prenom();
+            LocalDate date = lecteur.get_date_naissance();
+            String mail = lecteur.get_mail();
+            Integer age = lecteur.get_age();
+            ihm.afficher_lecteur( nom, prenom, date, age, mail, numeroLecteur);
+        }
+    }
+    
     public void consulter_exemplaire_ouvrage(IHM ihm){
         ArrayList<String> numerosISBN = this.get_numeros_ISBN();
         String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
@@ -125,23 +143,6 @@ public class Bibliotheque implements Serializable {
                 numeroExemplaire = ex.get_numero_exemplaire();
                 ihm.afficher_numero_exemplaire(numeroExemplaire);
             }
-        }
-    }
-
-    public void consulter_lecteur(IHM ihm){
-        ArrayList<Integer> numerosLecteur = this.get_numeros_lecteur();
-        Integer numeroLecteur = ihm.saisir_numero_lecteur(numerosLecteur);
-        if(numeroLecteur == null){
-            ihm.informer_utilisateur("ce numéro de lecteur n'existe pas dans la base", false);
-        }
-        else{
-            Lecteur lecteur = this.get_lecteur(numeroLecteur);
-            String nom = lecteur.get_nom();
-            String prenom = lecteur.get_prenom();
-            LocalDate date = lecteur.get_date_naissance();
-            String mail = lecteur.get_mail();
-            Integer age = lecteur.get_age();
-            ihm.afficher_lecteur( nom, prenom, date, age, mail, numeroLecteur);
         }
     }
     
