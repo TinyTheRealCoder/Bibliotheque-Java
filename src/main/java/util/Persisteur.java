@@ -97,6 +97,7 @@ public static final Bibliotheque lireEtat() throws ClassNotFoundException, IOExc
     }
     catch (IOException ioe) {
         System.err.println("Erreur de lecture du fichier de persistance.");
+        System.err.println(ioe);
         System.err.flush();
         throw ioe;
     }

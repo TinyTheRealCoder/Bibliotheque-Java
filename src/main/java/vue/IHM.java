@@ -226,6 +226,9 @@ public class IHM  {
         ES.afficher_libelle("Editeur : " + editeur);
         ES.afficher_libelle("Auteurs : "); 
         
+        
+        
+        
         for (String auteur : auteurs){
             ES.afficher_message(auteur);
         }
