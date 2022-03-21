@@ -70,6 +70,18 @@ public class IHM  {
             case CONSULTER_EXEMPLAIRES:
                 bibliotheque.consulter_exemplaire_ouvrage(this);
                 break;
+            case EMPRUNTER_EXEMPLAIRE:
+                bibliotheque.emprunter_exemplaire(this);
+                break;
+            case RENDRE_EXEMPLAIRE:
+                bibliotheque.rendre_exemplaire(this);
+                break;
+            case CONSULTER_EMPRUNTS_LECTEUR:
+                bibliotheque.consulter_emprunts_lecteur(this);
+                break;
+            case RELANCER_LECTEUR:
+                bibliotheque.relancer_lecteur(this);
+                break;
             default:
                 assert false : "Commande inconnue.";
         }

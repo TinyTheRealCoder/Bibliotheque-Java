@@ -16,7 +16,11 @@ CONSULTER_LECTEURS (2,"Consulter les informations d'un lecteur"),
 CREER_OUVRAGE (3,"Créer un nouvel ouvrage"),
 CONSULTER_OUVRAGE (4,"Consulter les informations d'un ouvrage"),
 CREER_EXEMPLAIRES (5,"Créer un ou plusieurs nouveaux exemplaires d'un ouvrage"),
-CONSULTER_EXEMPLAIRES (6,"Consulter les exemplaires d'un ouvrage");
+CONSULTER_EXEMPLAIRES (6,"Consulter les exemplaires d'un ouvrage"),
+EMPRUNTER_EXEMPLAIRE (7,"Enregistrer un nouvel emprunt"),
+RENDRE_EXEMPLAIRE (8,"Retour d'un exemplaire"),
+CONSULTER_EMPRUNTS_LECTEUR (9,"Consulter les emprunts d'un lecteur"),
+RELANCER_LECTEUR (10,"Consulter tout les exemplaires non retournés au bout de 15 jours");
 
 private final int code;
 private final String description;
