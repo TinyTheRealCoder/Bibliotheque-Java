@@ -56,6 +56,7 @@ public static final void sauverEtat(final Bibliotheque bibliotheque) throws File
     }
     catch (IOException ioe) {
         System.err.println("Erreur lors de l'écriture du fichier de persistance.");
+        System.err.println(ioe);
         System.err.flush();
         throw ioe;
     }
@@ -97,6 +98,7 @@ public static final Bibliotheque lireEtat() throws ClassNotFoundException, IOExc
     }
     catch (IOException ioe) {
         System.err.println("Erreur de lecture du fichier de persistance.");
+        System.err.println(ioe);
         System.err.flush();
         throw ioe;
     }

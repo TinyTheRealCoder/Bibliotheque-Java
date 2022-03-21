@@ -15,15 +15,12 @@ public class Bibliotheque implements Serializable {
     private static final long serialVersionUID = 1L;  // nécessaire pour la sérialisation
     private Map<Integer, Lecteur> lecteurs;  // association qualifiée par le num
     private HashMap<String, Ouvrage> ouvrages;
-
-    /*
-    roberben
-    */
-    private int dernierNumeroLecteur;
+    private Integer dernierNumeroLecteur;
 
     public Bibliotheque() {
         this.lecteurs = new HashMap<>();
         this.ouvrages = new HashMap<>();
+        this.dernierNumeroLecteur = 0;
     }
 
     
@@ -52,7 +49,7 @@ public class Bibliotheque implements Serializable {
     private ArrayList<Integer> get_numeros_lecteur(){
         ArrayList<Integer> numerosLecteur = new ArrayList<>();
         this.lecteurs.forEach((n, l) -> {
-            numerosLecteur.add(l.get_num());
+            numerosLecteur.add(l.get_numero());
         });
         return numerosLecteur;
     }
@@ -67,16 +64,20 @@ public class Bibliotheque implements Serializable {
         this.ouvrages.put(numeroISBN, ouvrage);
     }
     
+    private void incrementer_numero_lecteur(){
+        this.dernierNumeroLecteur += 1;
+    }
+    
     /* Cas d'utilisation */
     
     public void nouveau_lecteur(IHM ihm) {
-        IHM.InfosLecteur infosLecteur = ihm.saisir_lecteur();
+        this.incrementer_numero_lecteur();
+        IHM.InfosLecteur infosLecteur = ihm.saisir_lecteur(this.dernierNumeroLecteur);
         Lecteur l = lecteurs.get(infosLecteur.num);
         if (l == null) {
             l = new Lecteur(infosLecteur.num, infosLecteur.nom, infosLecteur.prenom, infosLecteur.dateNaiss, infosLecteur.email);
             add_lecteur(l, infosLecteur.num);
             ihm.informer_utilisateur("création du lecteur de numéro : " + infosLecteur.num, true);
-
         } else {
             ihm.informer_utilisateur("numéro de lecteur existant", false);
         }
@@ -85,53 +86,75 @@ public class Bibliotheque implements Serializable {
     public void nouvel_ouvrage(IHM ihm){
         ArrayList<String> numerosISBN = this.get_numeros_ISBN();
         IHM.InfosOuvrage infosOuvrage = ihm.saisir_ouvrage(numerosISBN);
-        Ouvrage ouvrage = new Ouvrage(infosOuvrage.numeroISBN, infosOuvrage.titre, infosOuvrage.editeur, infosOuvrage.dateParution, infosOuvrage.auteurs, infosOuvrage.publicVise);
-        this.add_ouvrage(ouvrage, ouvrage.get_numero_ISBN());
-        ihm.informer_utilisateur("Ouvrage créé", true);
+        if(infosOuvrage != null){
+            Ouvrage ouvrage = new Ouvrage(infosOuvrage.numeroISBN, infosOuvrage.titre, infosOuvrage.editeur, infosOuvrage.dateParution, infosOuvrage.auteurs, infosOuvrage.publicVise);
+            this.add_ouvrage(ouvrage, ouvrage.get_numero_ISBN());
+            ihm.informer_utilisateur("ouvrage créé", true);
+        }
+        else{
+            ihm.informer_utilisateur("l'ouvrage existe déjà dans la base", false);
+        }
     }
     
     public void nouvel_exemplaire(IHM ihm){
         ArrayList<String> numerosISBN = this.get_numeros_ISBN();
         IHM.InfosExemplaire infosExemplaire = ihm.saisir_exemplaire(numerosISBN);
-        Ouvrage ouvrage = this.get_ouvrage(infosExemplaire.numeroISBN);
-        ouvrage.add_exemplaire(infosExemplaire.quantiteExemplaire, infosExemplaire.quantiteEmpruntable, infosExemplaire.dateReception);
-        ihm.informer_utilisateur("Exemplaires ajoutés", true);
-    }
-
-
-    public void consulter_exemplaire_ouvrage(IHM ihm){
-        ArrayList<String> numerosISBN = this.get_numeros_ISBN();
-        String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
-        Ouvrage ouvrage = get_ouvrage(numeroISBN);
-        String titre = ouvrage.get_titre();
-        ihm.afficher_ouvrage(titre, numeroISBN);
-        ArrayList<Exemplaire> exemplaires = ouvrage.get_exemplaires();
-        int numeroExemplaire;
-        for(Exemplaire ex : exemplaires){
-            numeroExemplaire = ex.get_numero_exemplaire();
-            ihm.afficher_numero_exemplaire(numeroExemplaire);
+        if(infosExemplaire == null){
+            ihm.informer_utilisateur("cet ouvrage n'existe pas dans la base", false);
+        }
+        else{
+            Ouvrage o = ouvrages.get(infosExemplaire.numeroISBN);
+            o.add_exemplaire(infosExemplaire.quantiteExemplaire, infosExemplaire.quantiteEmpruntable, infosExemplaire.dateReception);
+            ihm.informer_utilisateur("exemplaires ajoutés", true);
         }
     }
+        
 
     public void consulter_lecteur(IHM ihm){
         ArrayList<Integer> numerosLecteur = this.get_numeros_lecteur();
         Integer numeroLecteur = ihm.saisir_numero_lecteur(numerosLecteur);
-        Lecteur lecteur = this.get_lecteur(numeroLecteur);
-        String nom = lecteur.get_nom();
-        String prenom = lecteur.get_prenom();
-        LocalDate date = lecteur.get_date_naissance();
-        String mail = lecteur.get_mail();
-        Integer age = lecteur.get_age();
-        ihm.afficher_lecteur( nom, prenom, date, age, mail, numeroLecteur);
+        if(numeroLecteur == null){
+            ihm.informer_utilisateur("ce numéro de lecteur n'existe pas dans la base", false);
+        }
+        else{
+            Lecteur lecteur = this.get_lecteur(numeroLecteur);
+            String nom = lecteur.get_nom();
+            String prenom = lecteur.get_prenom();
+            LocalDate date = lecteur.get_date_naissance();
+            String mail = lecteur.get_mail();
+            Integer age = lecteur.get_age();
+            ihm.afficher_lecteur( nom, prenom, date, age, mail, numeroLecteur);
+        }
     }
     
+    public void consulter_exemplaire_ouvrage(IHM ihm){
+        ArrayList<String> numerosISBN = this.get_numeros_ISBN();
+        String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
+        if(numeroISBN == null){
+            ihm.informer_utilisateur("cet ouvrage n'existe pas dans la base", false);
+        }
+        else{
+            Ouvrage o = get_ouvrage(numeroISBN);
+            String titre = o.get_titre();
+            ihm.afficher_ouvrage(titre, numeroISBN);
+            ArrayList<Exemplaire> exemplaires = o.get_exemplaires();
+            int numeroExemplaire;
+            for(Exemplaire ex : exemplaires){
+                numeroExemplaire = ex.get_numero();
+                ihm.afficher_numero_exemplaire(numeroExemplaire);
+            }
+        }
+    }
     
     public void consulter_ouvrage(IHM ihm){
         ArrayList<String> numerosISBN = this.get_numeros_ISBN();
         String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
-        Ouvrage ouvrage = get_ouvrage(numeroISBN);
-        String titre = ouvrage.get_titre();
-        ihm.afficher_ouvrage(titre, numeroISBN, ouvrage.get_editeur(), ouvrage.get_date_parution(), ouvrage.get_auteurs(), ouvrage.get_public_vise());
+        if(numeroISBN == null){
+            ihm.informer_utilisateur("cet ouvrage n'existe pas dans la base", false);
+        }
+        else{
+            Ouvrage ouvrage = get_ouvrage(numeroISBN);
+            ihm.afficher_ouvrage(ouvrage.get_titre(), numeroISBN, ouvrage.get_editeur(), ouvrage.get_date_parution(), ouvrage.get_auteurs(), ouvrage.get_public_vise());
+        }
     }
-    
 }

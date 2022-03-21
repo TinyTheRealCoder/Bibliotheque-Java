@@ -150,39 +150,44 @@ public class IHM  {
         Integer quantiteExemplaire, quantiteEmpruntable;
         
         ES.afficher_titre("== Saisie des informations de l'exemlaire ==");
-        numeroISBN = ES.lire_numero_existant(numerosISBN);
+        numeroISBN = ES.lire_numero_ISBN(numerosISBN, true);
+        if(numeroISBN == null){
+            return null;
+        }
         dateReception = ES.lire_date("Saisir la date de reception de l'exemplaire");
-        quantiteExemplaire = ES.lire_entier("Saisir la quantité d'exemplaire disponible", 0);
-        quantiteEmpruntable = ES.lire_entier("Saisir la quantite d'exemplaire empruntable", 0, quantiteExemplaire);
+        quantiteExemplaire = ES.lire_entier("Saisir la quantité d'exemplaire à ajouter", 0);
+        quantiteEmpruntable = ES.lire_entier("Combien sont empruntable", 0, quantiteExemplaire);
         
         return new InfosExemplaire(numeroISBN, dateReception, quantiteExemplaire, quantiteEmpruntable);
     }
     
     public InfosOuvrage saisir_ouvrage(ArrayList<String> numerosISBN){
-        String numero, titre, editeur;
+        String numeroISBN, titre, editeur;
         LocalDate dateParution;
         ArrayList<String> auteurs;
         PublicVise publicVise;
         
         ES.afficher_titre("== Saisie des informations de l'ouvrage ==");
+        numeroISBN = ES.lire_numero_ISBN(numerosISBN, false);
+        if(numeroISBN == null){
+            return null;
+        }
         titre = ES.lire_chaine("Saisir le titre de l'ouvrage : ");
         editeur = ES.lire_chaine("Saisir le nom de l'éditeur : ");
         dateParution = ES.lire_date("Saisir la date de parution de l'ouvrage");
         auteurs = ES.lire_auteurs();
-        numero = ES.lire_numero_unique(numerosISBN);
+        
         publicVise = ES.lire_public();
         
         
-        return new InfosOuvrage(titre, editeur, dateParution, auteurs, numero, publicVise);
+        return new InfosOuvrage(titre, editeur, dateParution, auteurs, numeroISBN, publicVise);
     }
     
-    public InfosLecteur saisir_lecteur() {
+    public InfosLecteur saisir_lecteur(Integer num) {
         String nom, prenom, adresse, email;
         LocalDate dateNaiss;
-        Integer num;
 
         ES.afficher_titre("== Saisie d'un lecteur ==");
-        num = ES.lire_entier("Saisir le numéro du lecteur :");
         nom = ES.lire_chaine("Saisir le nom du lecteur :");
         prenom = ES.lire_chaine("Saisir le prénom du lecteur :");
         adresse = ES.lire_chaine("Saisir l'adresse du lecteur :");
@@ -192,16 +197,15 @@ public class IHM  {
         return new InfosLecteur(num, nom, prenom, adresse, dateNaiss, email);
     }
     
-    public int saisir_numero_lecteur(ArrayList<Integer> numerosLecteur){
-        int numero;
+    public Integer saisir_numero_lecteur(ArrayList<Integer> numerosLecteur){
+        Integer numero;
         
         ES.afficher_titre("== Saisie d'un numéro lecteur ==");
         
-        numero = ES.lire_entier("Veuillez saisir un numéro lecteur existant : ");
+        numero = ES.lire_entier("Veuillez saisir un numéro de lecteur : ");
         
-        while (!numerosLecteur.contains(numero)){
-            ES.afficher_titre("Le numéro " + numero + " n'existe pas dans la base.");
-            numero = ES.lire_entier("Veuillez saisir un autre numéro lecteur : ");
+        if(!numerosLecteur.contains(numero)){
+            numero = null;
         }
         
         return numero;
@@ -212,7 +216,7 @@ public class IHM  {
         
         ES.afficher_titre("== Saisie d'un numéro ISBN ==");
         
-        numero = ES.lire_numero_existant(numerosISBN);
+        numero = ES.lire_numero_ISBN(numerosISBN, true);
         
         return numero;        
     }
@@ -220,21 +224,24 @@ public class IHM  {
     public void afficher_lecteur(final String nom, final String prenom, final LocalDate dateNaiss, final int age,final String email, final Integer num){
         ES.afficher_titre("== affichage du lecteur== " + num);
         ES.afficher_libelle("nom, prénom et mail du lecteur :" + nom + " " + prenom + " " + email);
-        ES.afficher_libelle("date de naissance et age du lecteur :" + dateNaiss + " " + age);
+        ES.afficher_libelle("date de naissance et age du lecteur :" + dateNaiss + ", " + age + "ans");
     }
     
     public void afficher_ouvrage(String titre, String numeroISBN){
         ES.afficher_titre("== affichage de l'ouvrage ==");
-        ES.afficher_titre("N° " + numeroISBN);
-        ES.afficher_titre("Titre : " + titre);        
+        ES.afficher_libelle("N° " + numeroISBN);
+        ES.afficher_libelle("Titre : " + titre);        
     }
     
-    public void afficher_ouvrage(String numeroISBN, String titre, String editeur, LocalDate date, ArrayList<String> auteurs, PublicVise pub){
+    public void afficher_ouvrage(String titre, String numeroISBN, String editeur, LocalDate date, ArrayList<String> auteurs, PublicVise pub){
         ES.afficher_titre("== affichage de l'ouvrage ==");
-        ES.afficher_titre("N° " + numeroISBN);
-        ES.afficher_titre("Titre : " + titre);
-        ES.afficher_titre("Editeur : " + editeur);
-        ES.afficher_titre("Titre : " + titre); 
+        ES.afficher_libelle("N° " + numeroISBN);
+        ES.afficher_libelle("Titre : " + titre);
+        ES.afficher_libelle("Editeur : " + editeur);
+        ES.afficher_libelle("Auteurs : "); 
+        
+        
+        
         
         for (String auteur : auteurs){
             ES.afficher_message(auteur);

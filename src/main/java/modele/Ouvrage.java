@@ -4,6 +4,7 @@
  */
 package modele;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -11,8 +12,9 @@ import java.util.ArrayList;
  *
  * @author tougmaa
  */
-public class Ouvrage {
-    
+public class Ouvrage implements Serializable {
+
+    private static final long serialVersionUID = 1L;  // nécessaire pour la sérialisation
     private String numeroISBN;
     private String titre;
     private String editeur;
@@ -38,7 +40,7 @@ public class Ouvrage {
     Methodes Générales
     */
     
-    public void incrementer_dernier_numero_exemplaire(){
+    private void incrementer_dernier_numero_exemplaire(){
         this.dernierNumeroExemplaire = this.dernierNumeroExemplaire + 1;
     }
     
@@ -52,7 +54,7 @@ public class Ouvrage {
         
         for(int i = 1; i <= quantiteExemplaire; i++){
             
-            empruntable = (i <= quantiteEmpruntable );
+            empruntable = (i <= quantiteEmpruntable);
             
             this.incrementer_dernier_numero_exemplaire();
                         
@@ -62,6 +64,11 @@ public class Ouvrage {
             this.exemplaires.add(ex);
             
         }
+    }
+    
+    public void add_exemplaire(Exemplaire ex){
+        this.incrementer_dernier_numero_exemplaire();
+        this.exemplaires.add(ex);
     }
     
     /*
@@ -98,6 +105,21 @@ public class Ouvrage {
     
     public ArrayList<Exemplaire> get_exemplaires() {
         return this.exemplaires;
+    }
+    
+    public Exemplaire get_exemplaire(Integer numero){
+        
+        for (Exemplaire ex : this.exemplaires){
+            if (ex.get_numero() == numero){
+                return ex;
+            }
+        }
+        
+        return null;
+    }
+    
+    public void set_ouvrage(Ouvrage ouvrage){
+        
     }
     
 }

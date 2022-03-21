@@ -81,17 +81,17 @@ public class ES {
     
     /**
      * 
-     * @param numerosISBN Une collections de numeros pour pouvoir vérifier que le numéro entrée soit bien unique
-     * @return String : le numero saisit
+     * @param numerosISBN Une collections de numeros pour pouvoir vérifier que le numéro entrée soit bien eistant
+     * @param in si true alors renvoi le numero s'il est dans la liste, si false renvoi le numero s'il n'est pas dans la liste
+     * @return String : le numero isbn existant dans la liste
      */
-    public static String lire_numero_unique(ArrayList<String> numerosISBN){
+    public static String lire_numero_ISBN(ArrayList<String> numerosISBN, boolean in){
         String numero;
         
-        numero = ES.lire_chaine("Veuillez saisir un numéro ISBN non existant : ");
+        numero = ES.lire_chaine("Veuillez saisir un numéro ISBN : ");
         
-        if (numerosISBN.contains(numero)){
-            ES.afficher_titre("Le numéro " + numero + " existe déjà dans la base.");
-            numero = ES.lire_numero_unique(numerosISBN);
+        if (in && !numerosISBN.contains(numero) || !in && numerosISBN.contains(numero)){
+            numero = null;
         }
         
         return numero;
@@ -99,17 +99,16 @@ public class ES {
     
     /**
      * 
-     * @param numerosISBN Une collections de numeros pour pouvoir vérifier que le numéro entrée soit bien existant
-     * @return String : le numéro isbn existant dans la liste
+     * @param numerosLecteur Une collections de numeros pour pouvoir vérifier que le numéro entrée soit bien existant
+     * @return String : le numéro lecteur existant dans la liste
      */
-    public static String lire_numero_existant(ArrayList<String> numerosISBN){
+    public static String lire_numero_lecteur(ArrayList<Integer> numerosLecteur){
         String numero;
         
-        numero = ES.lire_chaine("Veuillez saisir un numéro ISBN existant : ");
+        numero = ES.lire_chaine("Veuillez saisir un numéro de lecteur : ");
         
-        if (!numerosISBN.contains(numero)){
-            ES.afficher_titre("Le numéro " + numero + " n'existe pas dans la base.");
-            numero = ES.lire_numero_existant(numerosISBN);
+        if (!numerosLecteur.contains(numero)){
+            numero = null;
         }
         
         return numero;
