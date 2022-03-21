@@ -59,7 +59,7 @@ public class Exemplaire implements Serializable {
     }
     
     public InfosOuvrage get_infos_ouvrage(){
-        return new IHM.InfosOuvrage(this.ouvrage)
+        return new IHM.InfosOuvrage(this.ouvrage.get_numero_ISBN(), this.ouvrage.get_titre());
     }
     
     public void set_emprunt(Emprunt emprunt){
