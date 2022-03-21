@@ -127,6 +127,18 @@ public class Bibliotheque implements Serializable {
         }
     }
     
+    public void consulter_ouvrage(IHM ihm){
+        ArrayList<String> numerosISBN = this.get_numeros_ISBN();
+        String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
+        if(numeroISBN == null){
+            ihm.informer_utilisateur("cet ouvrage n'existe pas dans la base", false);
+        }
+        else{
+            Ouvrage ouvrage = get_ouvrage(numeroISBN);
+            ihm.afficher_ouvrage(ouvrage.get_titre(), numeroISBN, ouvrage.get_editeur(), ouvrage.get_date_parution(), ouvrage.get_auteurs(), ouvrage.get_public_vise());
+        }
+    }
+    
     public void consulter_exemplaire_ouvrage(IHM ihm){
         ArrayList<String> numerosISBN = this.get_numeros_ISBN();
         String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
@@ -146,15 +158,98 @@ public class Bibliotheque implements Serializable {
         }
     }
     
-    public void consulter_ouvrage(IHM ihm){
+    public void emprunter_exemplaire(IHM ihm){
         ArrayList<String> numerosISBN = this.get_numeros_ISBN();
-        String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
-        if(numeroISBN == null){
+        ArrayList<Integer> numerosLecteur = this.get_numeros_lecteur();
+        IHM.InfosExemplaire infosExemplaire = ihm.saisir_numero_ouvrage(numerosISBN);
+        Integer numeroLecteur = ihm.saisir_numero_lecteur(numerosLecteur);
+        if(infosExemplaire.numeroISBN == null){
+            ihm.informer_utilisateur("cet ouvrage n'existe pas dans la base", false);
+        }
+        else if(numeroLecteur == null){
+            ihm.informer_utilisateur("ce numéro de lecteur n'existe pas dans la base", false);
+        }
+        else{
+            Lecteur lect = this.get_lecteur(numeroLecteur);
+            Ouvrage ouvr = this.get_ouvrage(numeroISBN);
+            Exemplaire ex = ouvr.get_exemplaire(infosExemplaire.numeroExemplaire);
+            if(ex == null){
+                ihm.informer_utilisateur("ce numéro d'exemplaire n'existe pas dans la base", false);
+            }
+            else if(!ex.est_empruntable()){
+                ihm.informer_utilisateur("L'exemplaire n'est pas empruntable", false);
+            }
+            else if(lect.get_public_vise < ouvr.get_public_vise()){
+                ihm.informer_utilisateur("Le lecteur est trop jeune pour cet ouvrage", false);
+            }
+            else{
+                LocalDate dateEmprunt = ihm.saisir_date_emprunt();
+                lect.creer_emprunt(ex, dateEmprunt);
+                ihm.informer_utilisateur("Emprunt enregistré", true);
+            }
+        }
+    }
+    
+    public void rendre_exemplaire(IHM ihm){
+        ArrayList<String> numerosISBN = this.get_numeros_ISBN();
+        IHM.InfosExemplaire infosExemplaire = ihm.saisir_numero_ouvrage(numerosISBN);
+        if(infosExemplaire.numeroISBN == null){
             ihm.informer_utilisateur("cet ouvrage n'existe pas dans la base", false);
         }
         else{
-            Ouvrage ouvrage = get_ouvrage(numeroISBN);
-            ihm.afficher_ouvrage(ouvrage.get_titre(), numeroISBN, ouvrage.get_editeur(), ouvrage.get_date_parution(), ouvrage.get_auteurs(), ouvrage.get_public_vise());
+            Ouvrage ouvr = this.get_ouvrage(infosExemplaire.numeroISBN);
+            Exemplaire ex = ouvr.get_exemplaire(infosExemplaire.numeroExemplaire);
+            if(ex == null){
+                ihm.informer_utilisateur("ce numéro d'exemplaire n'existe pas dans la base", false);
+            }
+            else if(!ex.est_emprunte()){
+                ihm.informer_utilisateur("cet exemplaire n'est pas emprunté, il n'est pas possible de le rendre", false);
+            }
+            else {
+                Emprunt emp = ex.get_emprunt();
+                if(emp == null){
+                    ihm.informer_utilisateur("l'emprunt n'existe pas", false);
+                }
+                else{
+                    Lecteur lect = emp.get_lecteur();
+                    if(lect == null){
+                        ihm.informer_utilisateur("Aucun lecteur n'est associé à l'emprunt", false);
+                    }
+                    else{
+                        lect.detruire_emprunt(emp);
+                        ihm.informer_utilisateur("Exemplaire rendu", true);
+                    }
+                }
+            }
+        }
+    }
+    
+    public void consulter_emprunts_lecteur(IHM ihm){
+        ArrayList<Integer> numerosLecteur = this.get_numeros_lecteur();
+        Integer numeroLecteur = ihm.saisir_numero_lecteur(numerosLecteur);
+        if(numeroLecteur == null){
+            ihm.informer_utilisateur("ce numéro de lecteur n'existe pas dans la base", false);
+        }
+        else{
+            Lecteur lect = this.get_lecteur(numeroLecteur);
+            ihm.afficher_lecteur(numeroLecteur, lect.get_nom(), lect.get_prenom());
+            ArrayList<Emprunt> emprunts = lect.get_emprunts();
+            for(Emprunt emp : emprunts){
+                IHM.InfosExemplaire infosExemplaire = emp.get_infos_exemplaire();
+                ihm.afficher_emprunt(infosExemplaire, emp.get_date_emprunt(), emp.get_date_retour());
+            }
+        }
+    }
+    
+    public void relancer_lecteur(IHM ihm){
+        for(Lecteur lect : this.lecteurs.values()){
+            ArrayList<Emprunt> emprunts = lect.get_emprunts();
+            for(Emprunt emp : emprunts){
+                if(LocalDate.now().isAfter(emp.get_date_retour().plusDays(15))){
+                    IHM.InfosExemplaire infosExemplaire = emp.get_infos_exemplaire();
+                    ihm.afficher_emprunt(infosExemplaire, emp.get_date_emprunt(), emp.get_date_retour());
+                }
+            }
         }
     }
 }
