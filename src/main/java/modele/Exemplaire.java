@@ -18,7 +18,7 @@ public class Exemplaire implements Serializable {
     private LocalDate dateReception;
     private boolean empruntable;
     private Ouvrage ouvrage;
-    private Lecteur lecteur;
+    private Emprunt emprunt;
     
     Exemplaire(Ouvrage ouvrage, Integer numExemplaire, LocalDate dateReception, boolean empruntable){
         this.ouvrage = ouvrage;
@@ -43,6 +43,10 @@ public class Exemplaire implements Serializable {
         return this.empruntable;
     }
     
+    public Emprunt get_emprunt(){
+        return this.emprunt;
+    }
+        
     /*
     Dans le constructeur
     public boolean set_ouvrage();
