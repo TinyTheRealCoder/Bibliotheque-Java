@@ -49,7 +49,7 @@ public class Bibliotheque implements Serializable {
     private ArrayList<Integer> get_numeros_lecteur(){
         ArrayList<Integer> numerosLecteur = new ArrayList<>();
         this.lecteurs.forEach((n, l) -> {
-            numerosLecteur.add(l.get_num());
+            numerosLecteur.add(l.get_numero());
         });
         return numerosLecteur;
     }
@@ -152,7 +152,7 @@ public class Bibliotheque implements Serializable {
             ArrayList<Exemplaire> exemplaires = o.get_exemplaires();
             int numeroExemplaire;
             for(Exemplaire ex : exemplaires){
-                numeroExemplaire = ex.get_numero_exemplaire();
+                numeroExemplaire = ex.get_numero();
                 ihm.afficher_numero_exemplaire(numeroExemplaire);
             }
         }

@@ -6,6 +6,8 @@ package modele;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import vue.IHM;
+import vue.IHM.InfosOuvrage;
 
 /**
  *
@@ -18,9 +20,10 @@ public class Exemplaire implements Serializable {
     private LocalDate dateReception;
     private boolean empruntable;
     private Ouvrage ouvrage;
-    private Lecteur lecteur;
+    private Emprunt emprunt;
     
     Exemplaire(Ouvrage ouvrage, Integer numExemplaire, LocalDate dateReception, boolean empruntable){
+        this.emprunt = null;
         this.ouvrage = ouvrage;
         this.numeroExemplaire = numExemplaire;
         this.dateReception = dateReception;
@@ -31,7 +34,7 @@ public class Exemplaire implements Serializable {
     Getter Setter
     */
     
-    public Integer get_numero_exemplaire() {
+    public Integer get_numero() {
         return this.numeroExemplaire;
     }
     
@@ -39,10 +42,34 @@ public class Exemplaire implements Serializable {
         return this.dateReception;
     }
     
-    public boolean get_empruntable() {
+    public boolean est_empruntable() {
         return this.empruntable;
     }
     
+    public boolean est_emprunte(){
+        return (this.emprunt != null);
+    }
+    
+    public Emprunt get_emprunt(){
+        return this.emprunt;
+    }
+    
+    public Ouvrage get_ouvrage(){
+        return this.ouvrage;
+    }
+    
+    public InfosOuvrage get_infos_ouvrage(){
+        return new IHM.InfosOuvrage(this.ouvrage.get_numero_ISBN(), this.ouvrage.get_titre());
+    }
+    
+    public void set_emprunt(Emprunt emprunt){
+        this.emprunt = emprunt;
+    }
+    
+    public void unset_emprunt(){
+        this.emprunt = null;
+    }
+        
     /*
     Dans le constructeur
     public boolean set_ouvrage();
