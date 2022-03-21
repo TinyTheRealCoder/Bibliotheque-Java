@@ -115,6 +115,16 @@ public class IHM  {
             this.numeroISBN = numeroISBN;
             this.publicVise = publicVise;
         }
+        
+        public InfosOuvrage(final String numero, final String titre){
+            this.numeroISBN = numero;
+            this.titre = titre;
+            
+            this.auteurs = null;
+            this.dateParution = null;
+            this.editeur = null;
+            this.publicVise = null;
+        }
     }
     
     public static class InfosExemplaire{

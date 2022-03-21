@@ -6,6 +6,8 @@ package modele;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import vue.IHM;
+import vue.IHM.InfosOuvrage;
 
 /**
  *
@@ -54,6 +56,10 @@ public class Exemplaire implements Serializable {
     
     public Ouvrage get_ouvrage(){
         return this.ouvrage;
+    }
+    
+    public InfosOuvrage get_infos_ouvrage(){
+        return new IHM.InfosOuvrage(this.ouvrage)
     }
     
     public void set_emprunt(Emprunt emprunt){
