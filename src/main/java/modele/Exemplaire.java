@@ -21,6 +21,7 @@ public class Exemplaire implements Serializable {
     private Emprunt emprunt;
     
     Exemplaire(Ouvrage ouvrage, Integer numExemplaire, LocalDate dateReception, boolean empruntable){
+        this.emprunt = null;
         this.ouvrage = ouvrage;
         this.numeroExemplaire = numExemplaire;
         this.dateReception = dateReception;
@@ -39,12 +40,28 @@ public class Exemplaire implements Serializable {
         return this.dateReception;
     }
     
-    public boolean get_empruntable() {
+    public boolean est_empruntable() {
         return this.empruntable;
+    }
+    
+    public boolean est_emprunte(){
+        return (this.emprunt != null);
     }
     
     public Emprunt get_emprunt(){
         return this.emprunt;
+    }
+    
+    public Ouvrage get_ouvrage(){
+        return this.ouvrage;
+    }
+    
+    public void set_emprunt(Emprunt emprunt){
+        this.emprunt = emprunt;
+    }
+    
+    public void unset_emprunt(){
+        this.emprunt = null;
     }
         
     /*
