@@ -130,6 +130,20 @@ public class IHM  {
         }
     }
     
+    public static class InfosEmprunt{
+        public final int numeroLecteur;
+        public final String nom, prenom;
+        public final LocalDate dateEmprunt, dateRetour;
+        
+        public InfosEmprunt(final int numeroLecteur, final String nom,final String prenom,final LocalDate dateEmprunt,final LocalDate dateRetour){
+            this.numeroLecteur = numeroLecteur;
+            this.nom = nom;
+            this.prenom = prenom;
+            this.dateEmprunt = dateEmprunt;
+            this.dateRetour = dateRetour;
+        }
+    }
+    
     public InfosExemplaire saisir_exemplaire(ArrayList<String> numerosISBN){
         String numeroISBN;
         LocalDate dateReception;
