@@ -245,11 +245,26 @@ public class IHM  {
         
         return numero;        
     }
+    
+    public LocalDate saisir_date_emprunt(ArrayList<String> numerosISBN){
+        LocalDate dateEmprunt;
+        
+        ES.afficher_titre("== Saisie d'une date d'emprunt ==");
+        
+        dateEmprunt = ES.lire_date("Veuillez saisir la date de l'emprunt :");
+        
+        return dateEmprunt;        
+    }
 
     public void afficher_lecteur(final String nom, final String prenom, final LocalDate dateNaiss, final int age,final String email, final Integer num){
         ES.afficher_titre("== affichage du lecteur== " + num);
         ES.afficher_libelle("nom, prénom et mail du lecteur :" + nom + " " + prenom + " " + email);
         ES.afficher_libelle("date de naissance et age du lecteur :" + dateNaiss + ", " + age + "ans");
+    }
+    
+    public void afficher_lecteur(final int num, final LocalDate dateEmprunt, final LocalDate dateRetour){
+        ES.afficher_titre("== affichage des emprunts du lecteur== " + num);
+        ES.afficher_libelle("Date d'emprunt :" + dateEmprunt + " au " + dateRetour);
     }
     
     public void afficher_ouvrage(String titre, String numeroISBN){
@@ -278,6 +293,28 @@ public class IHM  {
     public void afficher_numero_exemplaire(int numeroExemplaire){
         ES.afficher_titre("== affichage du numéro de l'exemplaire ==");
         ES.afficher_titre("N° " + numeroExemplaire);    
+    }
+    
+    public void afficher_emprunt(InfosEmprunt infosEmprunt){
+        ES.afficher_titre("== affichage de l'emprunt du lecteur ==" + infosEmprunt.numeroLecteur);
+        ES.afficher_titre("Nom, prénom du lecteur" + infosEmprunt.nom + ", " + infosEmprunt.prenom);   
+        ES.afficher_titre("Date d'emprunt : " + infosEmprunt.dateEmprunt + " au " + infosEmprunt.dateRetour);   
+    }
+    
+    public void afficher_emprunt(InfosExemplaire infosExemplaire, LocalDate dateEmprunt, LocalDate dateRetour){
+        ES.afficher_titre("== affichage de l'emprunt =="); 
+        ES.afficher_titre("Date d'emprunt : " + dateEmprunt + " au " + dateRetour);   
+        ES.afficher_titre("Ouvrage N° " + infosExemplaire.infoOuvrage.numeroISBN); 
+        ES.afficher_titre("Exemplaire N° " + infosExemplaire.numExemplaire); 
+        ES.afficher_titre("Titre : " + infosExemplaire.infoOuvrage.titre); 
+        ES.afficher_titre("Auteurs : ");
+        
+        for (String auteur : infosExemplaire.infoOuvrage.auteurs){
+            ES.afficher_message(auteur);
+        }
+        
+        ES.afficher_titre("Date parution : " + infosExemplaire.infoOuvrage.dateParution); 
+        ES.afficher_titre("Public visé : " + infosExemplaire.infoOuvrage.publicVise);  
     }
 
         //-----  Primitives d'affichage  -----------------------------------------------
