@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import util.ES;
 import vue.*;
+import vue.IHM;
 import vue.IHM.InfosLecteur;
 
 public class Bibliotheque implements Serializable {
