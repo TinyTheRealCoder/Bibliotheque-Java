@@ -140,7 +140,7 @@ public class Bibliotheque implements Serializable {
             ArrayList<Exemplaire> exemplaires = o.get_exemplaires();
             int numeroExemplaire;
             for(Exemplaire ex : exemplaires){
-                numeroExemplaire = ex.get_numero_exemplaire();
+                numeroExemplaire = ex.get_numero();
                 ihm.afficher_numero_exemplaire(numeroExemplaire);
             }
         }

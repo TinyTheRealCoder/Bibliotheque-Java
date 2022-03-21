@@ -31,7 +31,7 @@ public class Exemplaire implements Serializable {
     Getter Setter
     */
     
-    public Integer get_numero_exemplaire() {
+    public Integer get_numero() {
         return this.numeroExemplaire;
     }
     
