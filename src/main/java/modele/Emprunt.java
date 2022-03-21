@@ -42,11 +42,11 @@ public class Emprunt {
     }
     
     public IHM.InfosExemplaire get_infos_exemplaire() {
-        return this.;
+        return new IHM.InfosExemplaire(this.exemplaire.get_numero(), this.exemplaire.get_infos_ouvrage());
     }
     
     public IHM.InfosEmprunt get_infos_emprunt() {
-        return this.;
+        return new IHM.InfosEmprunt(this.lecteur.get_numero(), this.lecteur.get_nom(), this.lecteur.get_prenom(), this.get_date_emprunt(), this.get_date_retour());
     }
     
     public Lecteur get_lecteur() {
