@@ -128,15 +128,30 @@ public class IHM  {
     }
     
     public static class InfosExemplaire{
+        
         public final String numeroISBN;
         public final LocalDate dateReception;
         public final Integer quantiteExemplaire, quantiteEmpruntable;
+        
+        public final int numExemplaire;
+        public final InfosOuvrage infoOuvrage;
         
         public InfosExemplaire(final String numeroISBN,final LocalDate dateReception, final Integer quantiteExemplaire, final Integer quantiteEmpruntable){
             this.numeroISBN = numeroISBN;
             this.dateReception = dateReception;
             this.quantiteExemplaire = quantiteExemplaire;
             this.quantiteEmpruntable = quantiteEmpruntable;
+            this.numExemplaire = 0;
+            this.infoOuvrage = null;
+        }
+        
+        public InfosExemplaire(final int numExemplaire,final InfosOuvrage infoOuvrage){
+            this.numeroISBN = null;
+            this.dateReception = null;
+            this.quantiteExemplaire = null;
+            this.quantiteEmpruntable = null;
+            this.numExemplaire = numExemplaire;
+            this.infoOuvrage = infoOuvrage;
         }
     }
     
