@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import vue.IHM;
 import vue.IHM.InfosOuvrage;
+import vue.IHM.InfosEmprunt;
 
 /**
  *

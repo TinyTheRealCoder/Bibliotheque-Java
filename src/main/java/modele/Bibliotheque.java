@@ -161,7 +161,7 @@ public class Bibliotheque implements Serializable {
     public void emprunter_exemplaire(IHM ihm){
         ArrayList<String> numerosISBN = this.get_numeros_ISBN();
         ArrayList<Integer> numerosLecteur = this.get_numeros_lecteur();
-        IHM.InfosExemplaire infosExemplaire = ihm.saisir_numero_ouvrage(numerosISBN);
+        ihm.InfosExemplaire infosExemplaire = ihm.saisir_numero_ouvrage(numerosISBN);
         Integer numeroLecteur = ihm.saisir_numero_lecteur(numerosLecteur);
         if(infosExemplaire.numeroISBN == null){
             ihm.informer_utilisateur("cet ouvrage n'existe pas dans la base", false);
@@ -232,7 +232,7 @@ public class Bibliotheque implements Serializable {
         }
         else{
             Lecteur lect = this.get_lecteur(numeroLecteur);
-            ihm.afficher_lecteur(numeroLecteur, lect.get_nom(), lect.get_prenom());
+            IHM.afficher_lecteur(numeroLecteur, lect.get_nom(), lect.get_prenom());
             ArrayList<Emprunt> emprunts = lect.get_emprunts();
             for(Emprunt emp : emprunts){
                 IHM.InfosExemplaire infosExemplaire = emp.get_infos_exemplaire();
