@@ -66,6 +66,11 @@ public class Ouvrage implements Serializable {
         }
     }
     
+    public void add_exemplaire(Exemplaire ex){
+        this.incrementer_dernier_numero_exemplaire();
+        this.exemplaires.add(ex);
+    }
+    
     /*
     * Getter Setter
     */
@@ -100,6 +105,21 @@ public class Ouvrage implements Serializable {
     
     public ArrayList<Exemplaire> get_exemplaires() {
         return this.exemplaires;
+    }
+    
+    public Exemplaire get_exemplaire(Integer numero){
+        
+        for (Exemplaire ex : this.exemplaires){
+            if (ex.get_numero() == numero){
+                return ex;
+            }
+        }
+        
+        return null;
+    }
+    
+    public void set_ouvrage(Ouvrage ouvrage){
+        
     }
     
 }
