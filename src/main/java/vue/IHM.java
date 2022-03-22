@@ -145,7 +145,7 @@ public class IHM  {
         public final LocalDate dateReception;
         public final Integer quantiteExemplaire, quantiteEmpruntable;
         
-        public final int numExemplaire;
+        public final int numeroExemplaire;
         public final InfosOuvrage infoOuvrage;
         
         public InfosExemplaire(final String numeroISBN,final LocalDate dateReception, final Integer quantiteExemplaire, final Integer quantiteEmpruntable){
@@ -153,7 +153,7 @@ public class IHM  {
             this.dateReception = dateReception;
             this.quantiteExemplaire = quantiteExemplaire;
             this.quantiteEmpruntable = quantiteEmpruntable;
-            this.numExemplaire = 0;
+            this.numeroExemplaire = 0;
             this.infoOuvrage = null;
         }
         
@@ -162,7 +162,7 @@ public class IHM  {
             this.dateReception = null;
             this.quantiteExemplaire = null;
             this.quantiteEmpruntable = null;
-            this.numExemplaire = numExemplaire;
+            this.numeroExemplaire = numExemplaire;
             this.infoOuvrage = infoOuvrage;
         }
     }
@@ -220,6 +220,24 @@ public class IHM  {
         return new InfosOuvrage(titre, editeur, dateParution, auteurs, numeroISBN, publicVise);
     }
     
+    /*
+    Benj pas sur
+    */
+    public InfosExemplaire saisir_numero_exemplaire(InfosOuvrage numeroISBN, int dernierNumExemplaire){
+        int numeroExemplaire;
+        
+        if(dernierNumExemplaire > 1){
+            //Aucun exemplaire n'est associé à l'ouvrage
+            return null;
+        }
+        numeroExemplaire = ES.lire_entier("Veuillez rentrer le numero de l'exemplaire : ", 1, dernierNumExemplaire);
+        if(numeroISBN == null){
+            return null;
+        }
+        
+        return new InfosExemplaire(numeroExemplaire, numeroISBN);
+    }
+    
     public InfosLecteur saisir_lecteur(Integer num) {
         String nom, prenom, adresse, email;
         LocalDate dateNaiss;
@@ -258,7 +276,7 @@ public class IHM  {
         return numero;        
     }
     
-    public LocalDate saisir_date_emprunt(ArrayList<String> numerosISBN){
+    public LocalDate saisir_date_emprunt(){
         LocalDate dateEmprunt;
         
         ES.afficher_titre("== Saisie d'une date d'emprunt ==");
@@ -274,10 +292,19 @@ public class IHM  {
         ES.afficher_libelle("date de naissance et age du lecteur :" + dateNaiss + ", " + age + "ans");
     }
     
+    /*
+    Benj
+    Les paramêtres ne sembles pas bon ????
     public void afficher_lecteur(final int num, final LocalDate dateEmprunt, final LocalDate dateRetour){
         ES.afficher_titre("== affichage des emprunts du lecteur== " + num);
         ES.afficher_libelle("Date d'emprunt :" + dateEmprunt + " au " + dateRetour);
     }
+    */
+    public void afficher_lecteur(final int num, final String nom, final String prenom){
+        ES.afficher_titre("== affichage des emprunts du lecteur== " + num);
+        ES.afficher_libelle("Nom, prénom du lecteur : " + nom + ", " + prenom);
+    }
+    
     
     public void afficher_ouvrage(String titre, String numeroISBN){
         ES.afficher_titre("== affichage de l'ouvrage ==");
@@ -317,7 +344,7 @@ public class IHM  {
         ES.afficher_titre("== affichage de l'emprunt =="); 
         ES.afficher_titre("Date d'emprunt : " + dateEmprunt + " au " + dateRetour);   
         ES.afficher_titre("Ouvrage N° " + infosExemplaire.infoOuvrage.numeroISBN); 
-        ES.afficher_titre("Exemplaire N° " + infosExemplaire.numExemplaire); 
+        ES.afficher_titre("Exemplaire N° " + infosExemplaire.numeroExemplaire); 
         ES.afficher_titre("Titre : " + infosExemplaire.infoOuvrage.titre); 
         ES.afficher_titre("Auteurs : ");
         
