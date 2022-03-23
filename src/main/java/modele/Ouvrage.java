@@ -7,6 +7,7 @@ package modele;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import vue.IHM;
 
 /**
  *
@@ -107,7 +108,7 @@ public class Ouvrage implements Serializable {
         return this.exemplaires;
     }
     
-    public Exemplaire get_exemplaire(Integer numero){
+    public Exemplaire get_exemplaire(int numero){
         
         for (Exemplaire ex : this.exemplaires){
             if (ex.get_numero() == numero){
@@ -116,6 +117,11 @@ public class Ouvrage implements Serializable {
         }
         
         return null;
+    }
+    
+    //Benj Modif
+    public IHM.InfosOuvrage get_infos_ouvrage(){
+        return new IHM.InfosOuvrage(this.titre, this.editeur, this.dateParution, this.auteurs, this.numeroISBN, this.publicVise);
     }
     
     public void set_ouvrage(Ouvrage ouvrage){

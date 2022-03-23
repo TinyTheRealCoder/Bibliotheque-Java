@@ -169,12 +169,12 @@ public class Bibliotheque implements Serializable {
         //Benj
         ArrayList<String> numerosISBN = this.get_numeros_ISBN();
         ArrayList<Integer> numerosLecteur = this.get_numeros_lecteur();
-        IHM.InfosOuvrage infosOuvrage = ihm.saisir_ouvrage(numerosISBN);
-        Ouvrage o = this.get_ouvrage(infosOuvrage.numeroISBN);
-        IHM.InfosExemplaire infosExemplaire = ihm.saisir_numero_exemplaire(infosOuvrage, o.get_dernier_numero_exemplaire());
+        String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
+        Ouvrage o = this.get_ouvrage(numeroISBN);
+        IHM.InfosExemplaire infosExemplaire = ihm.saisir_numero_exemplaire(o.get_infos_ouvrage(), o.get_dernier_numero_exemplaire());
         Integer numeroLecteur = ihm.saisir_numero_lecteur(numerosLecteur);
         
-        if(infosExemplaire.numeroISBN == null){
+        if(infosExemplaire.infosOuvrage.numeroISBN == null){
             ihm.informer_utilisateur("cet ouvrage n'existe pas dans la base", false);
         }
         else if(numeroLecteur == null){
@@ -182,15 +182,15 @@ public class Bibliotheque implements Serializable {
         }
         else{
             Lecteur lect = this.get_lecteur(numeroLecteur);
-            Ouvrage ouvr = this.get_ouvrage(infosExemplaire.numeroISBN);
-            Exemplaire ex = ouvr.get_exemplaire(infosExemplaire.numeroExemplaire);
+            //Benj Ouvrage ouvr = this.get_ouvrage(infosExemplaire.infosOuvrage.numeroISBN);
+            Exemplaire ex = o.get_exemplaire(infosExemplaire.numeroExemplaire);
             if(ex == null){
                 ihm.informer_utilisateur("ce numéro d'exemplaire n'existe pas dans la base", false);
             }
             else if(!ex.est_empruntable()){
                 ihm.informer_utilisateur("L'exemplaire n'est pas empruntable", false);
             }
-            else if(lect.get_age() < ouvr.get_public_vise().getAgeMin()){
+            else if(lect.get_age() < o.get_public_vise().getAgeMin()){
                 //Benj Changement méthode get_public_visé encore utile sur le lecteur ??
                 ihm.informer_utilisateur("Le lecteur est trop jeune pour cet ouvrage", false);
             }
@@ -205,15 +205,15 @@ public class Bibliotheque implements Serializable {
     public void rendre_exemplaire(IHM ihm){
         //Benj partie décomposée car sinon ca marchais pas (get_dernier_numero_exemplaire etant impossible dans lihm) voir s'il faut le décomposer dans le diag de seq 
         ArrayList<String> numerosISBN = this.get_numeros_ISBN();
-        IHM.InfosOuvrage infosOuvrage = ihm.saisir_ouvrage(numerosISBN);
-        Ouvrage o = this.get_ouvrage(infosOuvrage.numeroISBN);
-        IHM.InfosExemplaire infosExemplaire = ihm.saisir_numero_exemplaire(infosOuvrage, o.get_dernier_numero_exemplaire());
-        if(infosExemplaire.numeroISBN == null){
+        String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
+        Ouvrage o = this.get_ouvrage(numeroISBN);
+        IHM.InfosExemplaire infosExemplaire = ihm.saisir_numero_exemplaire(o.get_infos_ouvrage(), o.get_dernier_numero_exemplaire());
+        if(infosExemplaire.infosOuvrage.numeroISBN == null){
             ihm.informer_utilisateur("cet ouvrage n'existe pas dans la base", false);
         }
         else{
-            Ouvrage ouvr = this.get_ouvrage(infosExemplaire.numeroISBN);
-            Exemplaire ex = ouvr.get_exemplaire(infosExemplaire.numeroExemplaire);
+            //Ouvrage ouvr = this.get_ouvrage(infosExemplaire.infosOuvrage.numeroISBN);
+            Exemplaire ex = o.get_exemplaire(infosExemplaire.numeroExemplaire);
             if(ex == null){
                 ihm.informer_utilisateur("ce numéro d'exemplaire n'existe pas dans la base", false);
             }

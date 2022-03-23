@@ -26,6 +26,8 @@ public class Emprunt {
         this.set_date_retour(nombr_jour_retour);
         this.lecteur = lect;
         this.set_exemplaire(ex);
+        //Benj 
+        ex.set_emprunt(this);
         
     }
     

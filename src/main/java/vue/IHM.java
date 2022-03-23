@@ -146,7 +146,7 @@ public class IHM  {
         public final Integer quantiteExemplaire, quantiteEmpruntable;
         
         public final int numeroExemplaire;
-        public final InfosOuvrage infoOuvrage;
+        public final InfosOuvrage infosOuvrage;
         
         public InfosExemplaire(final String numeroISBN,final LocalDate dateReception, final Integer quantiteExemplaire, final Integer quantiteEmpruntable){
             this.numeroISBN = numeroISBN;
@@ -154,7 +154,7 @@ public class IHM  {
             this.quantiteExemplaire = quantiteExemplaire;
             this.quantiteEmpruntable = quantiteEmpruntable;
             this.numeroExemplaire = 0;
-            this.infoOuvrage = null;
+            this.infosOuvrage = null;
         }
         
         public InfosExemplaire(final int numExemplaire,final InfosOuvrage infoOuvrage){
@@ -163,7 +163,7 @@ public class IHM  {
             this.quantiteExemplaire = null;
             this.quantiteEmpruntable = null;
             this.numeroExemplaire = numExemplaire;
-            this.infoOuvrage = infoOuvrage;
+            this.infosOuvrage = infoOuvrage;
         }
     }
     
@@ -226,7 +226,7 @@ public class IHM  {
     public InfosExemplaire saisir_numero_exemplaire(InfosOuvrage numeroISBN, int dernierNumExemplaire){
         int numeroExemplaire;
         
-        if(dernierNumExemplaire > 1){
+        if(dernierNumExemplaire < 1){
             //Aucun exemplaire n'est associé à l'ouvrage
             return null;
         }
@@ -320,8 +320,6 @@ public class IHM  {
         ES.afficher_libelle("Auteurs : "); 
         
         
-        
-        
         for (String auteur : auteurs){
             ES.afficher_message(auteur);
         }
@@ -343,17 +341,17 @@ public class IHM  {
     public void afficher_emprunt(InfosExemplaire infosExemplaire, LocalDate dateEmprunt, LocalDate dateRetour){
         ES.afficher_titre("== affichage de l'emprunt =="); 
         ES.afficher_titre("Date d'emprunt : " + dateEmprunt + " au " + dateRetour);   
-        ES.afficher_titre("Ouvrage N° " + infosExemplaire.infoOuvrage.numeroISBN); 
+        ES.afficher_titre("Ouvrage N° " + infosExemplaire.infosOuvrage.numeroISBN); 
         ES.afficher_titre("Exemplaire N° " + infosExemplaire.numeroExemplaire); 
-        ES.afficher_titre("Titre : " + infosExemplaire.infoOuvrage.titre); 
+        ES.afficher_titre("Titre : " + infosExemplaire.infosOuvrage.titre); 
         ES.afficher_titre("Auteurs : ");
         
-        for (String auteur : infosExemplaire.infoOuvrage.auteurs){
+        for (String auteur : infosExemplaire.infosOuvrage.auteurs){
             ES.afficher_message(auteur);
         }
         
-        ES.afficher_titre("Date parution : " + infosExemplaire.infoOuvrage.dateParution); 
-        ES.afficher_titre("Public visé : " + infosExemplaire.infoOuvrage.publicVise);  
+        ES.afficher_titre("Date parution : " + infosExemplaire.infosOuvrage.dateParution); 
+        ES.afficher_titre("Public visé : " + infosExemplaire.infosOuvrage.publicVise);  
     }
 
         //-----  Primitives d'affichage  -----------------------------------------------

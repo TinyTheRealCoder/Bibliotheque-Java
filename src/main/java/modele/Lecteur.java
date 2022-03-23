@@ -15,7 +15,7 @@ public class Lecteur implements Serializable {
     private ArrayList<Emprunt> emprunts;
 
     public Lecteur(Integer num, String nom, String prenom, LocalDate dateNaiss, String email) {
-        this.emprunts = new ArrayList<>();
+        this.emprunts = new ArrayList<Emprunt>();
 
         this.numeroLecteur = num;
         this.nom = nom;
@@ -90,6 +90,9 @@ public class Lecteur implements Serializable {
     }
     
     private void add_emprunt(Emprunt emp){
+        if(this.emprunts == null){
+            this.emprunts = new ArrayList<Emprunt>();
+        }
         this.emprunts.add(emp);
     }
 
