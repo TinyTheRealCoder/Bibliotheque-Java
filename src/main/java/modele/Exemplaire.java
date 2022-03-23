@@ -65,6 +65,9 @@ public class Exemplaire implements Serializable {
     }
     
     public InfosEmprunt get_infos_emprunt(){
+        if(this.emprunt == null){
+            return null;
+        }
         return this.emprunt.get_infos_emprunt();
     }
     

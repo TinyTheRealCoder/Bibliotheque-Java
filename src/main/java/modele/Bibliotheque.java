@@ -155,6 +155,8 @@ public class Bibliotheque implements Serializable {
             for(Exemplaire ex : exemplaires){
                 numeroExemplaire = ex.get_numero();
                 ihm.afficher_numero_exemplaire(numeroExemplaire);
+                IHM.InfosEmprunt infosEmprunt = ex.get_infos_emprunt();
+                ihm.afficher_emprunt(infosEmprunt);
             }
         }
     }

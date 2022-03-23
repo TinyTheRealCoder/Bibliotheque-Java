@@ -287,9 +287,9 @@ public class IHM  {
     }
 
     public void afficher_lecteur(final String nom, final String prenom, final LocalDate dateNaiss, final int age,final String email, final Integer num){
-        ES.afficher_titre("== affichage du lecteur== " + num);
-        ES.afficher_libelle("nom, prénom et mail du lecteur :" + nom + " " + prenom + " " + email);
-        ES.afficher_libelle("date de naissance et age du lecteur :" + dateNaiss + ", " + age + "ans");
+        ES.afficher_titre("== Affichage du lecteur== " + num);
+        ES.afficher_libelle("Nom, prénom et mail du lecteur :" + nom + " " + prenom + " " + email);
+        ES.afficher_libelle("Date de naissance et age du lecteur :" + dateNaiss + ", " + age + "ans");
     }
     
     /*
@@ -301,19 +301,19 @@ public class IHM  {
     }
     */
     public void afficher_lecteur(final int num, final String nom, final String prenom){
-        ES.afficher_titre("== affichage des emprunts du lecteur== " + num);
+        ES.afficher_titre("== Affichage des emprunts du lecteur== " + num);
         ES.afficher_libelle("Nom, prénom du lecteur : " + nom + ", " + prenom);
     }
     
     
     public void afficher_ouvrage(String titre, String numeroISBN){
-        ES.afficher_titre("== affichage de l'ouvrage ==");
+        ES.afficher_titre("== Affichage de l'ouvrage ==");
         ES.afficher_libelle("N° " + numeroISBN);
         ES.afficher_libelle("Titre : " + titre);        
     }
     
     public void afficher_ouvrage(String titre, String numeroISBN, String editeur, LocalDate date, ArrayList<String> auteurs, PublicVise pub){
-        ES.afficher_titre("== affichage de l'ouvrage ==");
+        ES.afficher_titre("== Affichage de l'ouvrage ==");
         ES.afficher_libelle("N° " + numeroISBN);
         ES.afficher_libelle("Titre : " + titre);
         ES.afficher_libelle("Editeur : " + editeur);
@@ -327,30 +327,35 @@ public class IHM  {
     }
     
     public void afficher_numero_exemplaire(int numeroExemplaire){
-        ES.afficher_titre("== affichage du numéro de l'exemplaire ==");
-        ES.afficher_titre("N° " + numeroExemplaire);    
+        ES.afficher_titre("== Affichage de l'exemplaire ==");
+        ES.afficher_libelle("Exemplaire N° " + numeroExemplaire);    
     }
     
     public void afficher_emprunt(InfosEmprunt infosEmprunt){
-        ES.afficher_titre("== affichage de l'emprunt du lecteur ==" + infosEmprunt.numeroLecteur);
-        ES.afficher_titre("Nom, prénom du lecteur" + infosEmprunt.nom + ", " + infosEmprunt.prenom);   
-        ES.afficher_titre("Date d'emprunt : " + infosEmprunt.dateEmprunt + " au " + infosEmprunt.dateRetour);   
+        if(infosEmprunt != null){
+            ES.afficher_libelle("Exemplaire emprunté par le lecteur N°" + infosEmprunt.numeroLecteur);
+            ES.afficher_libelle("Nom, prénom du lecteur : " + infosEmprunt.nom + ", " + infosEmprunt.prenom);   
+            ES.afficher_libelle("Date d'emprunt : " + infosEmprunt.dateEmprunt + " au " + infosEmprunt.dateRetour);  
+        }
+        else{
+            ES.afficher_libelle("Exemplaire non emprunté");
+        }
     }
     
     public void afficher_emprunt(InfosExemplaire infosExemplaire, LocalDate dateEmprunt, LocalDate dateRetour){
-        ES.afficher_titre("== affichage de l'emprunt =="); 
-        ES.afficher_titre("Date d'emprunt : " + dateEmprunt + " au " + dateRetour);   
-        ES.afficher_titre("Ouvrage N° " + infosExemplaire.infosOuvrage.numeroISBN); 
-        ES.afficher_titre("Exemplaire N° " + infosExemplaire.numeroExemplaire); 
-        ES.afficher_titre("Titre : " + infosExemplaire.infosOuvrage.titre); 
+        ES.afficher_titre("== Affichage de l'emprunt =="); 
+        ES.afficher_libelle("Date d'emprunt : " + dateEmprunt + " au " + dateRetour);   
+        ES.afficher_libelle("Ouvrage N° " + infosExemplaire.infosOuvrage.numeroISBN); 
+        ES.afficher_libelle("Exemplaire N° " + infosExemplaire.numeroExemplaire); 
+        ES.afficher_libelle("Titre : " + infosExemplaire.infosOuvrage.titre); 
         if(infosExemplaire.infosOuvrage.auteurs.size()>1){
             ES.afficher_auteurs("Auteurs : ", infosExemplaire.infosOuvrage.auteurs);
         }
         else{
             ES.afficher_auteurs("Auteur : ", infosExemplaire.infosOuvrage.auteurs);
         } 
-        ES.afficher_titre("Date parution : " + infosExemplaire.infosOuvrage.dateParution); 
-        ES.afficher_titre("Public visé : " + infosExemplaire.infosOuvrage.publicVise);  
+        ES.afficher_libelle("Date parution : " + infosExemplaire.infosOuvrage.dateParution); 
+        ES.afficher_libelle("Public visé : " + infosExemplaire.infosOuvrage.publicVise);  
     }
 
         //-----  Primitives d'affichage  -----------------------------------------------

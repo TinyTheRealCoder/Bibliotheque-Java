@@ -431,7 +431,6 @@ public class ES {
                 System.out.print(", " + auteur);
             }
         }
-        System.out.println(" ");
         System.out.flush();
     }
     

@@ -4,6 +4,7 @@
  */
 package modele;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import vue.IHM;
 
@@ -11,8 +12,9 @@ import vue.IHM;
  *
  * @author benjt
  */
-public class Emprunt {
+public class Emprunt implements Serializable{
     
+    private static final long serialVersionUID = 1L;  // nécessaire pour la sérialisation
     private LocalDate dateEmprunt;
     private LocalDate dateRetour;
     private Exemplaire exemplaire;
