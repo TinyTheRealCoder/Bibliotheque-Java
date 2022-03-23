@@ -151,12 +151,15 @@ public class Bibliotheque implements Serializable {
             String titre = o.get_titre();
             ihm.afficher_ouvrage(titre, numeroISBN);
             ArrayList<Exemplaire> exemplaires = o.get_exemplaires();
-            int numeroExemplaire;
             for(Exemplaire ex : exemplaires){
-                numeroExemplaire = ex.get_numero();
-                ihm.afficher_numero_exemplaire(numeroExemplaire);
-                IHM.InfosEmprunt infosEmprunt = ex.get_infos_emprunt();
-                ihm.afficher_emprunt(infosEmprunt);
+                ihm.afficher_numero_exemplaire(ex.get_numero());
+                if(ex.est_emprunte()){
+                    IHM.InfosEmprunt infosEmprunt = ex.get_infos_emprunt();
+                    ihm.afficher_emprunt(infosEmprunt);
+                }
+                else{
+                    ihm.informer_utilisateur("cet exemplaire n'est pas emprunté", false);
+                }
             }
         }
     }
