@@ -261,6 +261,7 @@ public class Bibliotheque implements Serializable {
     public void relancer_lecteur(IHM ihm){
         for(Lecteur lect : this.lecteurs.values()){
             ArrayList<Emprunt> emprunts = lect.get_emprunts();
+            ihm.afficher_lecteur(lect.get_numero(), lect.get_nom(), lect.get_prenom());
             for(Emprunt emp : emprunts){
                 if(LocalDate.now().isAfter(emp.get_date_retour().plusDays(15))){
                     IHM.InfosExemplaire infosExemplaire = emp.get_infos_exemplaire();

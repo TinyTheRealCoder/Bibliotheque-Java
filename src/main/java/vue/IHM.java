@@ -301,7 +301,7 @@ public class IHM  {
     }
     */
     public void afficher_lecteur(final int num, final String nom, final String prenom){
-        ES.afficher_titre("== Affichage des emprunts du lecteur== " + num);
+        ES.afficher_titre("== Affichage des emprunts du lecteur " + num + " == ");
         ES.afficher_libelle("Nom, prénom du lecteur : " + nom + ", " + prenom);
     }
     
@@ -327,7 +327,7 @@ public class IHM  {
     }
     
     public void afficher_numero_exemplaire(int numeroExemplaire){
-        ES.afficher_titre("== Affichage de l'exemplaire ==");
+        ES.afficher_titre("== Affichage de l'exemplaire " + numeroExemplaire + " ==");
         ES.afficher_libelle("Exemplaire N° " + numeroExemplaire);    
     }
     
