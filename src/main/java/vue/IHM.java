@@ -317,13 +317,12 @@ public class IHM  {
         ES.afficher_libelle("N° " + numeroISBN);
         ES.afficher_libelle("Titre : " + titre);
         ES.afficher_libelle("Editeur : " + editeur);
-        ES.afficher_libelle("Auteurs : "); 
-        
-        
-        for (String auteur : auteurs){
-            ES.afficher_message(auteur);
+        if(auteurs.size()>1){
+            ES.afficher_auteurs("Auteurs : ", auteurs);
         }
-        
+        else{
+            ES.afficher_auteurs("Auteur : ", auteurs);
+        } 
         ES.afficher_titre("Public : " + pub);
     }
     
@@ -344,12 +343,12 @@ public class IHM  {
         ES.afficher_titre("Ouvrage N° " + infosExemplaire.infosOuvrage.numeroISBN); 
         ES.afficher_titre("Exemplaire N° " + infosExemplaire.numeroExemplaire); 
         ES.afficher_titre("Titre : " + infosExemplaire.infosOuvrage.titre); 
-        ES.afficher_titre("Auteurs : ");
-        
-        for (String auteur : infosExemplaire.infosOuvrage.auteurs){
-            ES.afficher_message(auteur);
+        if(infosExemplaire.infosOuvrage.auteurs.size()>1){
+            ES.afficher_auteurs("Auteurs : ", infosExemplaire.infosOuvrage.auteurs);
         }
-        
+        else{
+            ES.afficher_auteurs("Auteur : ", infosExemplaire.infosOuvrage.auteurs);
+        } 
         ES.afficher_titre("Date parution : " + infosExemplaire.infosOuvrage.dateParution); 
         ES.afficher_titre("Public visé : " + infosExemplaire.infosOuvrage.publicVise);  
     }

@@ -415,6 +415,27 @@ public class ES {
     }
     
     /**
+    * Affichage d'un message. On revient à la ligne après le message.
+    *
+    * @param libelle libelle à afficher.
+    */
+    public static void afficher_auteurs(String libelle, ArrayList<String> auteurs) {
+        System.out.print(libelle);
+        boolean start = true;
+        for (String auteur : auteurs){
+            if(start){
+                System.out.print(auteur);
+                start = false;
+            }
+            else{
+                System.out.print(", " + auteur);
+            }
+        }
+        System.out.println(" ");
+        System.out.flush();
+    }
+    
+    /**
      * Affichage d'un message puis d'un espace sans retour à la ligne
      * 
      * @param message message à afficher
