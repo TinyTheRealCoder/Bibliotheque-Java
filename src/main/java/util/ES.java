@@ -350,7 +350,7 @@ public class ES {
           try {
              String dateSaisie = lire_chaine();
              date = LocalDate.parse(dateSaisie);
-             if (date.isBefore(today)) {
+             if (date.isBefore(today) || date.isEqual(today)) {
                  OK = true;
              } else {
                  ES.afficher_libelle("La date saisie doit être antérieure ou égale à la date d'aujourd'hui");

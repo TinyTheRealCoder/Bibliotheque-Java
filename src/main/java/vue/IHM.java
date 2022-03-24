@@ -193,7 +193,7 @@ public class IHM  {
         }
         dateReception = ES.lire_date("Saisir la date de reception de l'exemplaire");
         quantiteExemplaire = ES.lire_entier("Saisir la quantité d'exemplaire à ajouter", 0);
-        quantiteEmpruntable = ES.lire_entier("Combien sont empruntable", 0, quantiteExemplaire);
+        quantiteEmpruntable = ES.lire_entier("Combien sont empruntables ?", 0, quantiteExemplaire);
         
         return new InfosExemplaire(numeroISBN, dateReception, quantiteExemplaire, quantiteEmpruntable);
     }
@@ -223,19 +223,14 @@ public class IHM  {
     /*
     Benj pas sur
     */
-    public InfosExemplaire saisir_numero_exemplaire(InfosOuvrage numeroISBN, int dernierNumExemplaire){
-        int numeroExemplaire;
+    public Integer saisir_numero_exemplaire(){
+        Integer num;
         
-        if(dernierNumExemplaire < 1){
-            //Aucun exemplaire n'est associé à l'ouvrage
-            return null;
-        }
-        numeroExemplaire = ES.lire_entier("Veuillez rentrer le numero de l'exemplaire : ", 1, dernierNumExemplaire);
-        if(numeroISBN == null){
-            return null;
-        }
+        ES.afficher_titre("== Saisie du numéro d'exemplaire ==");
         
-        return new InfosExemplaire(numeroExemplaire, numeroISBN);
+        num = ES.lire_entier(0);
+        
+        return num;   
     }
     
     public InfosLecteur saisir_lecteur(Integer num) {
@@ -300,9 +295,10 @@ public class IHM  {
         ES.afficher_libelle("Date d'emprunt :" + dateEmprunt + " au " + dateRetour);
     }
     */
+    
+    // Arthur modification de l'affichage car méthode aussi utilisé sur relancer lecteur
     public void afficher_lecteur(final int num, final String nom, final String prenom){
-        ES.afficher_titre("== Affichage des emprunts du lecteur " + num + " == ");
-        ES.afficher_libelle("Nom, prénom du lecteur : " + nom + ", " + prenom);
+        ES.afficher_libelle("Num - nom - prénom du lecteur : " + num + " - " + nom + " - " + prenom);
     }
     
     
@@ -348,6 +344,8 @@ public class IHM  {
         ES.afficher_libelle("Ouvrage N° " + infosExemplaire.infosOuvrage.numeroISBN); 
         ES.afficher_libelle("Exemplaire N° " + infosExemplaire.numeroExemplaire); 
         ES.afficher_libelle("Titre : " + infosExemplaire.infosOuvrage.titre); 
+        
+        /* Arthur : infos non demandés dans la spect :
         if(infosExemplaire.infosOuvrage.auteurs.size()>1){
             ES.afficher_auteurs("Auteurs : ", infosExemplaire.infosOuvrage.auteurs);
         }
@@ -355,7 +353,7 @@ public class IHM  {
             ES.afficher_auteurs("Auteur : ", infosExemplaire.infosOuvrage.auteurs);
         } 
         ES.afficher_libelle("Date parution : " + infosExemplaire.infosOuvrage.dateParution); 
-        ES.afficher_libelle("Public visé : " + infosExemplaire.infosOuvrage.publicVise);  
+        ES.afficher_libelle("Public visé : " + infosExemplaire.infosOuvrage.publicVise);   */
     }
 
         //-----  Primitives d'affichage  -----------------------------------------------

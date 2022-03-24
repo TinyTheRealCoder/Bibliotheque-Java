@@ -22,7 +22,7 @@ public class Emprunt implements Serializable{
     private int nombr_jour_retour = 8;
     
     
-    public Emprunt(Exemplaire ex, Lecteur lect, LocalDate dateEmprunt){
+    Emprunt(Exemplaire ex, Lecteur lect, LocalDate dateEmprunt){
         
         this.dateEmprunt = dateEmprunt;
         this.set_date_retour(nombr_jour_retour);

@@ -60,8 +60,8 @@ public class Exemplaire implements Serializable {
     }
     
     public InfosOuvrage get_infos_ouvrage(){
-        return this.ouvrage.get_infos_ouvrage();
-        //Benj return new IHM.InfosOuvrage(this.ouvrage.get_numero_ISBN(), this.ouvrage.get_titre());
+        return new IHM.InfosOuvrage(this.ouvrage.get_numero_ISBN(), this.ouvrage.get_titre());
+        //Arthur return this.ouvrage.get_infos_ouvrage(); (uniquement besoin du ISBN et du titre)
     }
     
     public InfosEmprunt get_infos_emprunt(){
