@@ -94,12 +94,14 @@ public class Bibliotheque implements Serializable {
     
     public void nouvel_exemplaire(IHM ihm){
         ArrayList<String> numerosISBN = this.get_numeros_ISBN();
-        IHM.InfosExemplaire infosExemplaire = ihm.saisir_exemplaire(numerosISBN);
-        if(infosExemplaire == null){
-            ihm.informer_utilisateur("cet ouvrage n'existe pas dans la base", false);
+        String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
+        if(numeroISBN == null){
+            ihm.informer_utilisateur("Cet ouvrage n'existe pas dans la base", false);
         }
         else{
-            Ouvrage o = ouvrages.get(infosExemplaire.numeroISBN);
+            Ouvrage o = ouvrages.get(numeroISBN);
+            LocalDate dateParution = o.get_date_parution();
+            IHM.InfosExemplaire infosExemplaire = ihm.saisir_exemplaire(numerosISBN, dateParution);
             o.add_exemplaire(infosExemplaire.quantiteExemplaire, infosExemplaire.quantiteEmpruntable, infosExemplaire.dateReception);
             ihm.informer_utilisateur("exemplaires ajoutés", true);
         }

@@ -148,8 +148,8 @@ public class IHM  {
         public final int numeroExemplaire;
         public final InfosOuvrage infosOuvrage;
         
-        public InfosExemplaire(final String numeroISBN,final LocalDate dateReception, final Integer quantiteExemplaire, final Integer quantiteEmpruntable){
-            this.numeroISBN = numeroISBN;
+        public InfosExemplaire(final LocalDate dateReception, final Integer quantiteExemplaire, final Integer quantiteEmpruntable){
+            this.numeroISBN = null;
             this.dateReception = dateReception;
             this.quantiteExemplaire = quantiteExemplaire;
             this.quantiteEmpruntable = quantiteEmpruntable;
@@ -181,21 +181,16 @@ public class IHM  {
         }
     }
     
-    public InfosExemplaire saisir_exemplaire(ArrayList<String> numerosISBN){
-        String numeroISBN;
+    public InfosExemplaire saisir_exemplaire(ArrayList<String> numerosISBN, LocalDate dateParution){
         LocalDate dateReception;
         Integer quantiteExemplaire, quantiteEmpruntable;
         
         ES.afficher_titre("== Saisie des informations de l'exemlaire ==");
-        numeroISBN = ES.lire_numero_ISBN(numerosISBN, true);
-        if(numeroISBN == null){
-            return null;
-        }
-        dateReception = ES.lire_date("Saisir la date de reception de l'exemplaire");
+        dateReception = ES.lire_date("Saisir la date de reception de l'exemplaire", dateParution);
         quantiteExemplaire = ES.lire_entier("Saisir la quantité d'exemplaire à ajouter", 0);
         quantiteEmpruntable = ES.lire_entier("Combien sont empruntables ?", 0, quantiteExemplaire);
         
-        return new InfosExemplaire(numeroISBN, dateReception, quantiteExemplaire, quantiteEmpruntable);
+        return new InfosExemplaire(dateReception, quantiteExemplaire, quantiteEmpruntable);
     }
     
     public InfosOuvrage saisir_ouvrage(ArrayList<String> numerosISBN){
