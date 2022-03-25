@@ -30,14 +30,18 @@ public class ES {
     //	---------------------------------------------------------------------------------------------------------------------
     //	Gestion des chaines de caractère 
     /**
-    * permet la saisie d'une chaine. Pas de contrôle du format saisi.
+    * permet la saisie d'une chaine. Controle si la chaine n'est pas vide.
     *
     * @return chaine saisie par l'utilisREJECTED_NONFASTFORWARDateur
     */
 
     public static String lire_chaine() {
         try {
-            return entree.readLine();
+            String entree_tmp = entree.readLine();
+            if(entree_tmp.isEmpty()){
+                entree_tmp = lire_chaine("Veuillez entrer une chaine non vide : ");
+            }
+            return entree_tmp;
         } catch (IOException e) {
             System.out.println(" ERREUR d'E/S : IO.LIRE_CHAINE");
             return "";
@@ -362,10 +366,43 @@ public class ES {
         return date;
 
     } // Fin de lireDate
+    
+    /**
+    * permet la saisie d'une date au format AAAA-MM-JJ. Si l'utilisateur saisit une valeur
+    * non conforme, affichage d'une erreur et demande d'une autre saisie.
+    * @param dateBorneInf DateLocal : La date de borne inf ou egal
+    * @return DateLocal : la date saisie.
+    */
+
+    public static LocalDate lire_date (LocalDate dateBorneInf) {
+        Boolean OK = false;
+        LocalDate date = null;
+        LocalDate today = LocalDate.now();
+        do {
+          try {
+             String dateSaisie = lire_chaine();
+             date = LocalDate.parse(dateSaisie);
+             if ((date.isBefore(today) || date.isEqual(today)) && (date.isAfter(dateBorneInf) || date.isEqual(dateBorneInf))) {
+                 OK = true;
+             } else {
+                 ES.afficher_libelle("La date saisie doit être comprise entre " + dateBorneInf + " et la date d'aujourd'hui");
+             }
+            } catch (DateTimeParseException ignored) {
+                {System.out.println ("La date saisie n'est pas valide, Recommencez au format YYYY-MM-JJ");}
+        }        
+        }while (!OK);
+        return date;
+
+    } // Fin de lireDate
 
     public static LocalDate lire_date(String libelle) {
         ES.afficher_libelle(libelle);
         return lire_date();
+    }   // Fin de lireDate
+    
+    public static LocalDate lire_date(String libelle, LocalDate dateBornInf) {
+        ES.afficher_libelle(libelle);
+        return lire_date(dateBornInf);
     }   // Fin de lireDate
 
     // Traitements internes

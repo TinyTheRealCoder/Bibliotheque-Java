@@ -228,7 +228,7 @@ public class IHM  {
         
         ES.afficher_titre("== Saisie du numéro d'exemplaire ==");
         
-        num = ES.lire_entier(0);
+        num = ES.lire_entier("Veuillez saisir un numéro d'exemplaire : ", 0);
         
         return num;   
     }
@@ -271,20 +271,20 @@ public class IHM  {
         return numero;        
     }
     
-    public LocalDate saisir_date_emprunt(){
+    public LocalDate saisir_date_emprunt(LocalDate dateRecept){
         LocalDate dateEmprunt;
         
         ES.afficher_titre("== Saisie d'une date d'emprunt ==");
         
-        dateEmprunt = ES.lire_date("Veuillez saisir la date de l'emprunt :");
+        dateEmprunt = ES.lire_date("Veuillez saisir la date de l'emprunt :", dateRecept);
         
         return dateEmprunt;        
     }
 
     public void afficher_lecteur(final String nom, final String prenom, final LocalDate dateNaiss, final int age,final String email, final Integer num){
-        ES.afficher_titre("== Affichage du lecteur== " + num);
-        ES.afficher_libelle("Nom, prénom et mail du lecteur :" + nom + " " + prenom + " " + email);
-        ES.afficher_libelle("Date de naissance et age du lecteur :" + dateNaiss + ", " + age + "ans");
+        ES.afficher_titre("== Affichage du lecteur N°" + num + " == " );
+        ES.afficher_libelle("Nom | Prénom | Mail du lecteur : " + nom + " | " + prenom + " | " + email);
+        ES.afficher_libelle("Date de naissance et age du lecteur : " + dateNaiss + ", " + age + "ans");
     }
     
     /*
@@ -298,7 +298,7 @@ public class IHM  {
     
     // Arthur modification de l'affichage car méthode aussi utilisé sur relancer lecteur
     public void afficher_lecteur(final int num, final String nom, final String prenom){
-        ES.afficher_libelle("Num - nom - prénom du lecteur : " + num + " - " + nom + " - " + prenom);
+        ES.afficher_libelle("N° | Nom | Prénom du lecteur : " + num + " | " + nom + " | " + prenom);
     }
     
     
@@ -323,15 +323,14 @@ public class IHM  {
     }
     
     public void afficher_numero_exemplaire(int numeroExemplaire){
-        ES.afficher_titre("== Affichage de l'exemplaire " + numeroExemplaire + " ==");
-        ES.afficher_libelle("Exemplaire N° " + numeroExemplaire);    
+        ES.afficher_titre("== Affichage de l'exemplaire N°" + numeroExemplaire + " ==");
     }
     
     public void afficher_emprunt(InfosEmprunt infosEmprunt){
         if(infosEmprunt != null){
             ES.afficher_libelle("Exemplaire emprunté par le lecteur N°" + infosEmprunt.numeroLecteur);
             ES.afficher_libelle("Nom, prénom du lecteur : " + infosEmprunt.nom + ", " + infosEmprunt.prenom);   
-            ES.afficher_libelle("Date d'emprunt : " + infosEmprunt.dateEmprunt + " au " + infosEmprunt.dateRetour);  
+            ES.afficher_libelle("Periode d'emprunt : " + infosEmprunt.dateEmprunt + " au " + infosEmprunt.dateRetour);  
         }
         else{
             ES.afficher_libelle("Exemplaire non emprunté");
