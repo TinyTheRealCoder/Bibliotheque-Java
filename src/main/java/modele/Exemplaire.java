@@ -43,12 +43,16 @@ public class Exemplaire implements Serializable {
         return this.dateReception;
     }
     
+    public boolean est_non_empruntable(){
+        return (!this.empruntable);
+    }
+    
     public boolean est_empruntable() {
-        return this.empruntable;
+        return (this.empruntable && this.emprunt == null);
     }
     
     public boolean est_emprunte(){
-        return (this.emprunt != null);
+        return (this.empruntable && this.emprunt != null);
     }
     
     public Emprunt get_emprunt(){
