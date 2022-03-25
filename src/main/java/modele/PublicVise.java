@@ -19,6 +19,6 @@ public enum PublicVise {
 
     PublicVise(int ageMin){this.ageMin=ageMin;}   
 
-    public int getAgeMin(){return this.ageMin;}
+    public int get_age_min(){return this.ageMin;}
 
 }

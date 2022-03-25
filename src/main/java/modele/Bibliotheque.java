@@ -196,7 +196,7 @@ public class Bibliotheque implements Serializable {
                 else if(!ex.est_empruntable()){
                     ihm.informer_utilisateur("L'exemplaire n'est pas empruntable", false);
                 }
-                else if(l.get_age() < o.get_public_vise().getAgeMin()){
+                else if(l.get_age() < o.get_age_min()){
                     ihm.informer_utilisateur("Le lecteur est trop jeune pour cet ouvrage", false);
                 }
                 else{

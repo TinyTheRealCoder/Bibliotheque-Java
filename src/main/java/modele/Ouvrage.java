@@ -104,6 +104,10 @@ public class Ouvrage implements Serializable {
         return this.publicVise;
     }
     
+    public int get_age_min() {
+        return this.publicVise.get_age_min();
+    }
+    
     public ArrayList<Exemplaire> get_exemplaires() {
         return this.exemplaires;
     }
