@@ -79,9 +79,8 @@ public class Lecteur implements Serializable {
     }
     
     public void detruire_emprunt(Emprunt emp){
-        
+        emp.detruire();
         this.emprunts.remove(emp); // remove le 1er emprunt trouvé => ne traite pas le cas où il y'a deux emprunts identiques
-        
     }
     
     public void creer_emprunt(Exemplaire ex, LocalDate dateEmprunt){

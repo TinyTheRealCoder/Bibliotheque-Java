@@ -159,8 +159,11 @@ public class Bibliotheque implements Serializable {
                         IHM.InfosEmprunt infosEmprunt = ex.get_infos_emprunt();
                         ihm.afficher_emprunt(infosEmprunt);
                     }
+                    else if(ex.est_empruntable()){
+                        ihm.informer_utilisateur("Exemplaire empruntable");
+                    }
                     else{
-                        ihm.informer_utilisateur("Cet exemplaire n'est pas emprunté");
+                        ihm.informer_utilisateur("Erreur statut exemplaire", false);
                     }
                 }
             }
@@ -268,8 +271,8 @@ public class Bibliotheque implements Serializable {
             for(Emprunt emp : emprunts){
                 if(LocalDate.now().isAfter(emp.get_date_retour().plusDays(15))){
                     IHM.InfosExemplaire infosExemplaire = emp.get_infos_exemplaire();
-                    ihm.afficher_lecteur(lect.get_numero(), lect.get_nom(), lect.get_prenom());
                     ihm.afficher_emprunt(infosExemplaire, emp.get_date_emprunt(), emp.get_date_retour());
+                    ihm.afficher_lecteur(lect.get_numero(), lect.get_nom(), lect.get_prenom());
                 }
             }
         }
