@@ -171,13 +171,6 @@ public class Bibliotheque implements Serializable {
     }
     
     public void emprunter_exemplaire(IHM ihm){
-        /* Ancienne version au cas ou
-        ArrayList<String> numerosISBN = this.get_numeros_ISBN();
-        ArrayList<Integer> numerosLecteur = this.get_numeros_lecteur();
-        IHM.InfosExemplaire infosExemplaire = ihm.saisir_numero_ouvrage(numerosISBN);
-        Integer numeroLecteur = ihm.saisir_numero_lecteur(numerosLecteur);
-        */
-        //Benj
         ArrayList<Integer> numerosLecteur = this.get_numeros_lecteur();
         Integer numeroLecteur = ihm.saisir_numero_lecteur(numerosLecteur);
         if(numeroLecteur == null){
@@ -203,7 +196,7 @@ public class Bibliotheque implements Serializable {
                 else if(!ex.est_empruntable()){
                     ihm.informer_utilisateur("L'exemplaire n'est pas empruntable", false);
                 }
-                else if(l.get_age() < o.get_public_vise().getAgeMin()){
+                else if(l.get_age() < o.get_age_min()){
                     ihm.informer_utilisateur("Le lecteur est trop jeune pour cet ouvrage", false);
                 }
                 else{
@@ -217,15 +210,13 @@ public class Bibliotheque implements Serializable {
     }
     
     public void rendre_exemplaire(IHM ihm){
-        //Benj partie décomposée car sinon ca marchais pas (get_dernier_numero_exemplaire etant impossible dans lihm) voir s'il faut le décomposer dans le diag de seq 
-
         ArrayList<String> numerosISBN = this.get_numeros_ISBN();
         String numeroISBN = ihm.saisir_numero_ouvrage(numerosISBN);
-        Integer numeroExemplaire = ihm.saisir_numero_exemplaire();
         if(numeroISBN == null){
             ihm.informer_utilisateur("cet ouvrage n'existe pas dans la base", false);
         }
         else{
+            Integer numeroExemplaire = ihm.saisir_numero_exemplaire();
             Ouvrage o = this.get_ouvrage(numeroISBN);
             Exemplaire ex = o.get_exemplaire(numeroExemplaire);
             if(ex == null){
