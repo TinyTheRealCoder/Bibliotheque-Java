@@ -84,10 +84,12 @@ public class ES {
     
     
     /**
+     * Renvoi un numero en fonction de in et de numerosISBN<>
      * 
-     * @param numerosISBN Une collections de numeros pour pouvoir vérifier que le numéro entrée soit bien eistant
-     * @param in si true alors renvoi le numero s'il est dans la liste, si false renvoi le numero s'il n'est pas dans la liste
-     * @return String : le numero isbn existant dans la liste
+     * @param numerosISBN Une collections de numeros
+     * @param in boolean (true = renvoi le numero s'il est dans la liste sinon null,
+     *                    false = renvoi le numero s'il n'est pas dans la liste sinon null
+     * @return String : numero ou null
      */
     public static String lire_numero_ISBN(ArrayList<String> numerosISBN, boolean in){
         String numero;
