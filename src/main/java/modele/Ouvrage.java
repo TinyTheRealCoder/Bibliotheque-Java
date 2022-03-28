@@ -123,13 +123,8 @@ public class Ouvrage implements Serializable {
         return null;
     }
     
-    //Benj Modif
     public IHM.InfosOuvrage get_infos_ouvrage(){
         return new IHM.InfosOuvrage(this.titre, this.editeur, this.dateParution, this.auteurs, this.numeroISBN, this.publicVise);
-    }
-    
-    public void set_ouvrage(Ouvrage ouvrage){
-        
     }
     
 }
