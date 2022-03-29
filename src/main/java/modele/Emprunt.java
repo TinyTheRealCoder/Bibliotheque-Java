@@ -30,7 +30,7 @@ public class Emprunt implements Serializable{
     }
     
     /*
-    Getter Setter
+    Getter
     */
     
     public LocalDate get_date_emprunt() {
@@ -57,6 +57,10 @@ public class Emprunt implements Serializable{
         return this.exemplaire;
     }
     
+    /*
+    Setter/Adder
+    */
+    
     private void set_exemplaire(Exemplaire ex){
         this.exemplaire = ex;
     }
@@ -69,6 +73,14 @@ public class Emprunt implements Serializable{
         this.lecteur = lect;
     }
     
+    public void unset_exemplaire(){
+        this.exemplaire = null;
+    }
+    
+    public void unset_lecteur(){
+        this.lecteur = null;
+    }
+    
     /*
     Fonctions générales
     */
@@ -79,11 +91,4 @@ public class Emprunt implements Serializable{
         this.unset_lecteur();
     }
     
-    public void unset_exemplaire(){
-        this.exemplaire = null;
-    }
-    
-    public void unset_lecteur(){
-        this.lecteur = null;
-    }
 }

@@ -24,6 +24,10 @@ public class Lecteur implements Serializable {
         this.mail = email;
     }
 
+    /*
+    Getter
+    */
+    
     public Integer get_numero() {
         return numeroLecteur;
     }
@@ -74,8 +78,27 @@ public class Lecteur implements Serializable {
             
     }
     
+    /*
+    Setter
+    */
+    
+    private void add_emprunt(Emprunt emp){
+        if(this.emprunts == null){
+            this.emprunts = new ArrayList<Emprunt>();
+        }
+        this.emprunts.add(emp);
+    }
+    
+    /*
+    Méthodes états et autres
+    */
+    
     public boolean est_non_sature(){
         return this.emprunts.size() < 5;
+    }
+    
+    public boolean est_sature(){
+        return this.emprunts.size() == 5;
     }
     
     public void detruire_emprunt(Emprunt emp){
@@ -88,11 +111,5 @@ public class Lecteur implements Serializable {
         this.add_emprunt(emp);
     }
     
-    private void add_emprunt(Emprunt emp){
-        if(this.emprunts == null){
-            this.emprunts = new ArrayList<Emprunt>();
-        }
-        this.emprunts.add(emp);
-    }
 
 }

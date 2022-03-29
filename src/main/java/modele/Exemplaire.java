@@ -28,7 +28,7 @@ public class Exemplaire implements Serializable {
     }
     
     /*
-    Getter Setter
+    Getter
     */
     
     public Integer get_numero() {
@@ -37,18 +37,6 @@ public class Exemplaire implements Serializable {
     
     public LocalDate get_date_reception() {
         return this.dateReception;
-    }
-    
-    public boolean est_non_empruntable(){
-        return (!this.empruntable);
-    }
-    
-    public boolean est_empruntable() {
-        return (this.empruntable && this.emprunt == null);
-    }
-    
-    public boolean est_emprunte(){
-        return (this.empruntable && this.emprunt != null);
     }
     
     public Emprunt get_emprunt(){
@@ -70,12 +58,32 @@ public class Exemplaire implements Serializable {
         return this.emprunt.get_infos_emprunt();
     }
     
+    /*
+    Setter
+    */
+    
     public void set_emprunt(Emprunt emprunt){
         this.emprunt = emprunt;
     }
     
     public void unset_emprunt(){
         this.emprunt = null;
+    }
+    
+    /*
+    Methodes états
+    */
+    
+    public boolean est_non_empruntable(){
+        return (!this.empruntable);
+    }
+    
+    public boolean est_empruntable() {
+        return (this.empruntable && this.emprunt == null);
+    }
+    
+    public boolean est_emprunte(){
+        return (this.empruntable && this.emprunt != null);
     }
     
 }

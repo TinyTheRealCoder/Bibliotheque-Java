@@ -32,44 +32,9 @@ public class Ouvrage implements Serializable {
         this.publicVise = publicVise;
         this.exemplaires = new ArrayList<>();
     }
-    
+
     /*
-    Methodes Générales
-    */
-    
-    private void incrementer_dernier_numero_exemplaire(){
-        this.dernierNumeroExemplaire = this.dernierNumeroExemplaire + 1;
-    }
-    
-    /*
-    Methodes Add
-    */
-    
-    public void add_exemplaire(Integer quantiteExemplaire, Integer quantiteEmpruntable, LocalDate dateReception){
-        boolean empruntable;
-        Exemplaire ex;
-        
-        for(int i = 1; i <= quantiteExemplaire; i++){
-            
-            empruntable = (i <= quantiteEmpruntable);
-            
-            this.incrementer_dernier_numero_exemplaire();
-                        
-            ex = new Exemplaire(this,this.get_dernier_numero_exemplaire(), dateReception, empruntable);
-            
-            //Methode private add_exemplaire du diag de sequence simplifié 
-            this.exemplaires.add(ex);
-            
-        }
-    }
-    
-    public void add_exemplaire(Exemplaire ex){
-        this.incrementer_dernier_numero_exemplaire();
-        this.exemplaires.add(ex);
-    }
-    
-    /*
-    * Getter Setter
+    * Getter
     */
     
     public String get_numero_ISBN() {
@@ -121,6 +86,37 @@ public class Ouvrage implements Serializable {
     
     public IHM.InfosOuvrage get_infos_ouvrage(){
         return new IHM.InfosOuvrage(this.titre, this.editeur, this.dateParution, this.auteurs, this.numeroISBN, this.publicVise);
+    }
+    
+
+    /*
+    Methodes Add
+    */
+    
+    public void add_exemplaire(Integer quantiteExemplaire, Integer quantiteEmpruntable, LocalDate dateReception){
+        boolean empruntable;
+        Exemplaire ex;
+        
+        for(int i = 1; i <= quantiteExemplaire; i++){
+            
+            empruntable = (i <= quantiteEmpruntable);
+            
+            this.incrementer_dernier_numero_exemplaire();
+                        
+            ex = new Exemplaire(this,this.get_dernier_numero_exemplaire(), dateReception, empruntable);
+            
+            //Methode private add_exemplaire du diag de sequence simplifié 
+            this.exemplaires.add(ex);
+            
+        }
+    }
+    
+    /*
+    Methodes Générales
+    */
+    
+    private void incrementer_dernier_numero_exemplaire(){
+        this.dernierNumeroExemplaire = this.dernierNumeroExemplaire + 1;
     }
     
 }
