@@ -9,10 +9,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import vue.IHM;
 
-/**
- *
- * @author tougmaa
- */
 public class Ouvrage implements Serializable {
 
     private static final long serialVersionUID = 1L;  // nécessaire pour la sérialisation

@@ -4,11 +4,6 @@
  */
 package modele;
 
-/**
- *
- * @author roberben
- */
-//public enum PublicVise {ENFANT,ADOLESCENT,ADULTE;}
 public enum PublicVise {
 
     ENFANT(3),

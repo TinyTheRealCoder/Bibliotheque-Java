@@ -8,10 +8,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import vue.IHM;
 
-/**
- *
- * @author benjt
- */
 public class Emprunt implements Serializable{
     
     private static final long serialVersionUID = 1L;  // nécessaire pour la sérialisation

@@ -10,10 +10,6 @@ import vue.IHM;
 import vue.IHM.InfosOuvrage;
 import vue.IHM.InfosEmprunt;
 
-/**
- *
- * @author tougmaa
- */
 public class Exemplaire implements Serializable {
 
     private static final long serialVersionUID = 1L;  // nécessaire pour la sérialisation
@@ -65,7 +61,6 @@ public class Exemplaire implements Serializable {
     
     public InfosOuvrage get_infos_ouvrage(){
         return new IHM.InfosOuvrage(this.ouvrage.get_numero_ISBN(), this.ouvrage.get_titre());
-        //Arthur return this.ouvrage.get_infos_ouvrage(); (uniquement besoin du ISBN et du titre)
     }
     
     public InfosEmprunt get_infos_emprunt(){
@@ -82,9 +77,5 @@ public class Exemplaire implements Serializable {
     public void unset_emprunt(){
         this.emprunt = null;
     }
-        
-    /*
-    Dans le constructeur
-    public boolean set_ouvrage();
-    */
+    
 }

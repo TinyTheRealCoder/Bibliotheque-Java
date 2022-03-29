@@ -215,9 +215,6 @@ public class IHM  {
         return new InfosOuvrage(titre, editeur, dateParution, auteurs, numeroISBN, publicVise);
     }
     
-    /*
-    Benj pas sur
-    */
     public Integer saisir_numero_exemplaire(){
         Integer num;
         
@@ -282,20 +279,9 @@ public class IHM  {
         ES.afficher_libelle("Date de naissance et age du lecteur : " + dateNaiss + ", " + age + "ans");
     }
     
-    /*
-    Benj
-    Les paramêtres ne sembles pas bon ????
-    public void afficher_lecteur(final int num, final LocalDate dateEmprunt, final LocalDate dateRetour){
-        ES.afficher_titre("== affichage des emprunts du lecteur== " + num);
-        ES.afficher_libelle("Date d'emprunt :" + dateEmprunt + " au " + dateRetour);
-    }
-    */
-    
-    // Arthur modification de l'affichage car méthode aussi utilisé sur relancer lecteur
     public void afficher_lecteur(final int num, final String nom, final String prenom){
         ES.afficher_libelle("N° | Nom | Prénom du lecteur : " + num + " | " + nom + " | " + prenom);
     }
-    
     
     public void afficher_ouvrage(String titre, String numeroISBN){
         ES.afficher_titre("== Affichage de l'ouvrage ==");
@@ -339,18 +325,9 @@ public class IHM  {
         ES.afficher_libelle("Exemplaire N° " + infosExemplaire.numeroExemplaire); 
         ES.afficher_libelle("Titre : " + infosExemplaire.infosOuvrage.titre); 
         
-        /* Arthur : infos non demandés dans la spect :
-        if(infosExemplaire.infosOuvrage.auteurs.size()>1){
-            ES.afficher_auteurs("Auteurs : ", infosExemplaire.infosOuvrage.auteurs);
-        }
-        else{
-            ES.afficher_auteurs("Auteur : ", infosExemplaire.infosOuvrage.auteurs);
-        } 
-        ES.afficher_libelle("Date parution : " + infosExemplaire.infosOuvrage.dateParution); 
-        ES.afficher_libelle("Public visé : " + infosExemplaire.infosOuvrage.publicVise);   */
     }
 
-        //-----  Primitives d'affichage  -----------------------------------------------
+    //-----  Primitives d'affichage  -----------------------------------------------
     public void informer_utilisateur(final String msg, final boolean succes) {
         ES.afficher_libelle((succes ? "[OK]" : "[KO]") + " " + msg);
     }
