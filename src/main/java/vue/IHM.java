@@ -293,6 +293,7 @@ public class IHM  {
         ES.afficher_titre("== Affichage de l'ouvrage ==");
         ES.afficher_libelle("N° " + numeroISBN);
         ES.afficher_libelle("Titre : " + titre);
+        ES.afficher_libelle("Date de parution : "+ date);
         ES.afficher_libelle("Editeur : " + editeur);
         if(auteurs.size()>1){
             ES.afficher_auteurs("Auteurs : ", auteurs);
